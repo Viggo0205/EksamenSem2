@@ -1,0 +1,16 @@
+﻿@page
+@model EksamenSem2.Pages.SkemaModel
+@{
+
+}
+<form method="post">
+    <input asp-for="Skema.MedarbejderID" />
+    <input asp-for="Skema.DayOfWeek" />
+    <input asp-for="Skema.StartTime" />
+    <input asp-for="Skema.EndTime" />
+    <button type="submit">Tilføj Medarbejder Skema</button>
+</form>
+
+<table>
+    @* Loop through work schedules and create a table row for each *@
+</table>
