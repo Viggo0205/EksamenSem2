@@ -3,7 +3,7 @@ using EksamenSem2.Services.Interfaces;
 using EksamenSem2.Models;
 
 namespace EksamenSem2.Models;
-public partial class Medarbejder
+public partial class Medarbejder : IHasId
 {
     /// <summary>
     /// This constructor should be used when creatng new object to be managed by EF Core, 
@@ -14,6 +14,7 @@ public partial class Medarbejder
 
     public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password)
     {
+        Id = MedarbejderId;
         Navn = navn;
         Email = email;
         TlfNr = tlfNr;
@@ -21,5 +22,5 @@ public partial class Medarbejder
         Password = password;
     }
 
-    
+    public int Id { get; set;}
 }
