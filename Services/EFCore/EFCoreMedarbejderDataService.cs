@@ -14,5 +14,9 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
         return GetAllWithIncludes(context).FirstOrDefault(x => x.Navn == name);
     }
 
+    public Medarbejder? VerifyUser(string providedEmail, string providedPassword)
+    {
+        throw new NotImplementedException();
+    }
 }
 
