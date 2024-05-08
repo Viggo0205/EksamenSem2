@@ -1,9 +1,13 @@
 using EksamenSem2.Models;
+using EksamenSem2.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IMedabejderDataService,EFCoreMedarbejderDataService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,34 @@
+﻿@page
+@model EksamenSem2.Pages.TilføjMedarbejderModel
+@{
+}
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Medarbejder.Navn" class="control-label"></label>
+        <input asp-for="Medarbejder.Navn" class="form-control" />
+        <sPan asp-validation-for="Medarbejder.Navn" class="text-danger"></sPan>
+    </div>
+    <div class="form-group">
+        <label asp-for="Medarbejder.Email" class="control-label"></label>
+        <input asp-for="Medarbejder.Email" class="form-control" />
+        <sPan asp-validation-for="Medarbejder.Email" class="text-danger"></sPan>
+    </div>
+    <div class="form-group">
+        <label asp-for="Medarbejder.TlfNr" class="control-label"></label>
+        <input asp-for="Medarbejder.TlfNr" class="form-control" />
+        <sPan asp-validation-for="Medarbejder.TlfNr" class="text-danger"></sPan>
+    </div>
+    <div class="form-group">
+        <label asp-for="Medarbejder.RolleId" class="control-label"></label>
+        <input asp-for="Medarbejder.RolleId" class="form-control" />
+        <sPan asp-validation-for="Medarbejder.RolleId" class="text-danger"></sPan>
+    </div>
+    <div class="form-group">
+        <label asp-for="Medarbejder.Password" class="control-label"></label>
+        <input asp-for="Medarbejder.Password" class="form-control" />
+        <sPan asp-validation-for="Medarbejder.Password" class="text-danger"></sPan>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
