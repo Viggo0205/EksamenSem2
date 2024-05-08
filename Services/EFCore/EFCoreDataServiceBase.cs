@@ -4,6 +4,8 @@ using EksamenSem2.Services.Interfaces;
 
 public class EFCoreDataServiceBase<T> : IDataService<T> where T : class, IHasId
 {
+
+
     public List<T> GetAll()
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
