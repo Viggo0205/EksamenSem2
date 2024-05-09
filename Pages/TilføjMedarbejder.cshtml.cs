@@ -38,9 +38,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
         {
         }
 
-        //public IActionResult OnPost()
-        //{
-        //}
+        public IActionResult Onpost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-    }
+            _medarbejderDataService.Create(Medarbejder);
+            return RedirectToPage("/GetAllMedarbejderer");
+        }
+
+}
 

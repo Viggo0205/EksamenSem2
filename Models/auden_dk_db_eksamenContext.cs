@@ -38,7 +38,7 @@ public partial class auden_dk_db_eksamenContext : DbContext
 
         modelBuilder.Entity<Medarbejder>(entity =>
         {
-            entity.HasKey(e => e.MedarbejderId).HasName("PK__Medarbej__1707B576E1F55D7B");
+            entity.HasKey(e => e.Id).HasName("PK__Medarbej__1707B576E1F55D7B");
 
             entity.HasOne(d => d.Rolle).WithMany(p => p.Medarbejders).HasConstraintName("FK__Medarbejd__Rolle__6E01572D");
 

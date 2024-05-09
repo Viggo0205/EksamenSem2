@@ -12,8 +12,7 @@ namespace EksamenSem2.Models;
 public partial class Medarbejder
 {
     [Key]
-    [Column("Medarbejder_ID")]
-    public int MedarbejderId { get; set; }
+    public int Id { get; set; }
 
     public double? Løn { get; set; }
 
