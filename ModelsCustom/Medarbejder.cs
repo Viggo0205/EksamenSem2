@@ -1,6 +1,5 @@
 ﻿using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
-using EksamenSem2.Models;
 
 namespace EksamenSem2.Models;
 public partial class Medarbejder : IHasId
