@@ -1,5 +1,8 @@
 using EksamenSem2.Models;
+using EksamenSem2.Pages.Login;
 using EksamenSem2.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -36,6 +39,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
         public void OnGet()
         {
+            if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
+            {
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
         }
 
         //public IActionResult OnPost()
