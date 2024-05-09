@@ -31,5 +31,10 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
     {
         throw new NotImplementedException();
     }
+
+    public Medarbejder? VerifyUser()
+    {
+        throw new NotImplementedException();
+    }
 }
 

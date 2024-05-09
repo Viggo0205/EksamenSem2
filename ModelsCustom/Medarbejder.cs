@@ -13,7 +13,7 @@ public partial class Medarbejder : IHasId
 
     public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password, Kompetence kompetences, double timeløn)
     {
-        Id = MedarbejderId;
+        //Id = 0;
         Navn = navn;
         Email = email;
         TlfNr = tlfNr;
@@ -23,5 +23,5 @@ public partial class Medarbejder : IHasId
         Timeløn = timeløn;
     }
 
-    public int Id { get; set;}
+    //public int Id { get; set; }
 }
