@@ -8,6 +8,8 @@ namespace EksamenSem2.Services.Interfaces
         /// Verifies that a provided user name and password matches a known user profile.
         /// </summary>
         /// <returns>User matching the provided information, otherwise null.</returns>
+        /// 
+        Medarbejder? VerifyUser();
         Medarbejder? VerifyUser(string providedEmail, string providedPassword);
     }
 }

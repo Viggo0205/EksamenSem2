@@ -12,7 +12,11 @@ builder.Services.AddSingleton<IMedabejderDataService,EFCoreMedarbejderDataServic
 builder.Services.AddRazorPages(options =>
 {
     // Add authorization options
-    options.Conventions.AuthorizeFolder("/Skema");
+    options.Conventions.AuthorizePage("/Index");
+    options.Conventions.AuthorizePage("/TilføjMedarbeder");
+    options.Conventions.AuthorizePage("/GetAllMedarbederer");
+
+
 });
 
 builder.Services.Configure<CookiePolicyOptions>(options =>

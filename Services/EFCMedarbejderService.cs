@@ -14,5 +14,10 @@ namespace EksamenSem2.Services
 
             return medarbejder;
         }
+
+        public Medarbejder? VerifyUser()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

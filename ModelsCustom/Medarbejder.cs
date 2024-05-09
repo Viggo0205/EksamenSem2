@@ -15,7 +15,7 @@ public partial class Medarbejder : IHasId
 
     public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password, Kompetence kompetences, double timeløn)
     {
-        Id = 0;
+        //Id = 0;
         Navn = navn;
         Email = email;
         TlfNr = tlfNr;
@@ -24,4 +24,6 @@ public partial class Medarbejder : IHasId
         Kompetences = (ICollection<Kompetence>)kompetences;
         Timeløn = timeløn;
     }
+
+    //public int Id { get; set; }
 }

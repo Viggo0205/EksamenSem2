@@ -1,4 +1,7 @@
 using EksamenSem2.Models;
+using EksamenSem2.Pages.Login;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -11,7 +14,8 @@ namespace EksamenSem2.Pages
 
         public void OnGet()
         {
-            // Load existing work schedules from database
+
+
         }
 
         public void OnPost()
