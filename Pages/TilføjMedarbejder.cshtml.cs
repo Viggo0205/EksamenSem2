@@ -4,23 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace EksamenSem2.Pages
-{
+
     public class TilføjMedarbejderModel : PageModel
     {
         public Medarbejder Medarbejder { get; set; }
 
-        public string ErrorMessage {  get; set; }
+        public string ErrorMessage { get; set; }
 
         public SelectList Kompetencer { get; set; }
 
         [BindProperty]
         public string Navn { get; set; }
         [BindProperty]
-        public string Email {  get; set; }
+        public string Email { get; set; }
         [BindProperty]
-        public int TlfNr {  get; set; }
-        public List<Skema> Vagtplan {  get; set; }
+        public int TlfNr { get; set; }
+        public List<Skema> Vagtplan { get; set; }
         public string Password { get; set; }
         public int RolleId { get; set; }
         public Rolle Rolle { get; set; }
@@ -30,7 +29,7 @@ namespace EksamenSem2.Pages
 
         public TilføjMedarbejderModel(IMedabejderDataService medabejderDataService)
         {
-          _medarbejderDataService = medabejderDataService;
+            _medarbejderDataService = medabejderDataService;
         }
 
 
@@ -44,4 +43,4 @@ namespace EksamenSem2.Pages
         //}
 
     }
-}
+

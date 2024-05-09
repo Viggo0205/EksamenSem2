@@ -1,0 +1,34 @@
+﻿@page
+@model EksamenSem2.Pages.GetAllMedarbejdererModel
+@{
+}
+<h1 class="display-3 mb-5">Medarbejdere</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var medarbejder in Model.Medarbejder)
+        {
+            <div class="col-md-4 p-3">
+                <div class="card shadow" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">@medarbejder.Navn</h3>
+                        <h5>@(medarbejder.Email)</h5>
+                        <div class="d-flex justify-content-between">
+                           @*  <div>
+                                <h5>@(medarbejder.Address)</h5>
+                            </div> *@
+                            <div>
+                                <a class="btn btn-outline-secondary btn-sm" type="button" title="View" asp-page="View" asp-route-id="@medarbejder.Id"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-outline-primary btn-sm" type="button" title="Edit" asp-page="Edit" asp-route-id="@medarbejder.Id"><i class="fa fa-edit"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<p>
+    <a class="btn btn-outline-primary mt-3" asp-page="Create"> Create a new Customer </a>
+</p>
