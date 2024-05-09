@@ -1,6 +1,5 @@
 ﻿using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
-using EksamenSem2.Models;
 
 namespace EksamenSem2.Models;
 public partial class Medarbejder : IHasId
@@ -12,7 +11,7 @@ public partial class Medarbejder : IHasId
     /// 
     public Medarbejder() {}
 
-    public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password)
+    public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password, Kompetence kompetences, double timeløn)
     {
         Id = MedarbejderId;
         Navn = navn;
@@ -20,6 +19,8 @@ public partial class Medarbejder : IHasId
         TlfNr = tlfNr;
         RolleId = rolleId;
         Password = password;
+        Kompetences = (ICollection<Kompetence>)kompetences;
+        Timeløn = timeløn;
     }
 
     public int Id { get; set;}
