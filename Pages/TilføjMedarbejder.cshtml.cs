@@ -45,17 +45,6 @@ public class TilføjMedarbejderModel : PageModel
         }
     }
 
-    public IActionResult Onpost()
-    {
-        if (!ModelState.IsValid)
-        {
-            return Page();
-        }
-
-        _medarbejderDataService.Create(Medarbejder);
-        return RedirectToPage("/GetAllMedarbejderer");
-    }
-
 }
 
 
