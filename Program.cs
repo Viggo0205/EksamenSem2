@@ -1,5 +1,6 @@
 using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IMedabejderDataService,EFCoreMedarbejderDataService>();
+builder.Services.AddRazorPages(options =>
+{
+    // Add authorization options
+    options.Conventions.AuthorizeFolder("/Skema");
+});
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = "/LogIn/LogInPage";
+});
+
 
 var app = builder.Build();
 
@@ -23,7 +40,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication(); // Enables cookie-based Authentication
 app.UseAuthorization();
 
 app.MapRazorPages();

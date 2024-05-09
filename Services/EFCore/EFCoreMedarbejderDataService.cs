@@ -27,5 +27,9 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
     //    return (context.SaveChanges() > 0);
     //}
 
+    public Medarbejder? VerifyUser(string providedEmail, string providedPassword)
+    {
+        throw new NotImplementedException();
+    }
 }
 
