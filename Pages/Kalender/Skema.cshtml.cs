@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EksamenSem2.Pages
+namespace EksamenSem2.Pages.Kalender
 {
     public class SkemaModel : PageModel
     {
@@ -14,8 +14,6 @@ namespace EksamenSem2.Pages
 
         public void OnGet()
         {
-
-
         }
 
         public void OnPost()

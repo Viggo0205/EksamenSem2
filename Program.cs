@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages(options =>
 {
     // Add authorization options
-    // options.Conventions.AuthorizePage("/Index");
+    options.Conventions.AuthorizeFolder("/Kalender");
+
     options.Conventions.AuthorizePage("/GetAllMedarbejderer");
     options.Conventions.AuthorizePage("/TilføjMedarbejder");
 });
