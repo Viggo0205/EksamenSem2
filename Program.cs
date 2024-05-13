@@ -7,17 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddSingleton<IMedabejderDataService,EFCoreMedarbejderDataService>();
+
 builder.Services.AddRazorPages(options =>
 {
     // Add authorization options
-    options.Conventions.AuthorizePage("/Index");
-    options.Conventions.AuthorizePage("/TilføjMedarbeder");
-    options.Conventions.AuthorizePage("/GetAllMedarbederer");
-
-
+    // options.Conventions.AuthorizePage("/Index");
+    options.Conventions.AuthorizePage("/GetAllMedarbejderer");
+    options.Conventions.AuthorizePage("/TilføjMedarbejder");
 });
+
+builder.Services.AddSingleton<IMedabejderDataService, EFCoreMedarbejderDataService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {

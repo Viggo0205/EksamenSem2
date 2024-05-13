@@ -21,8 +21,6 @@ namespace EksamenSem2.Pages
             {
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             }
-
-
         }
     }
 }

@@ -29,7 +29,8 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
 
     public Medarbejder? VerifyUser(string providedEmail, string providedPassword)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
+        return new Medarbejder() { Email = providedEmail };
     }
 
     public Medarbejder? VerifyUser()

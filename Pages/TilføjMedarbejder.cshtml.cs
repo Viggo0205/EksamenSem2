@@ -10,18 +10,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class TilføjMedarbejderModel : PageModel
 {
+    [BindProperty]
     public Medarbejder Medarbejder { get; set; }
 
     public string ErrorMessage { get; set; }
 
     public SelectList Kompetencer { get; set; }
 
-    [BindProperty]
-    public string Navn { get; set; }
-    [BindProperty]
-    public string Email { get; set; }
-    [BindProperty]
-    public int TlfNr { get; set; }
     public List<Skema> Vagtplan { get; set; }
     public string Password { get; set; }
     public int RolleId { get; set; }

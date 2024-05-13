@@ -30,12 +30,12 @@ namespace EksamenSem2.Pages.Login
             _medarbejderDataService = medarbejderDataService;
         }
 
-        public IMedabejderDataService Get_medarbejderDataService()
-        {
-            return _medarbejderDataService;
-        }
+        //public IMedabejderDataService Get_medarbejderDataService()
+        //{
+        //    return _medarbejderDataService;
+        //}
 
-        public async Task<IActionResult> OnPost(IMedabejderDataService _medarbejderDataService)
+        public async Task<IActionResult> OnPost()
         {
             LoggedInMedarbejder = _medarbejderDataService.VerifyUser(Email, Password);
 
