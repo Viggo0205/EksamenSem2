@@ -15,6 +15,8 @@ public class TilføjMedarbejderModel : PageModel
 
     public string ErrorMessage { get; set; }
 
+    [BindProperty]
+    public int[] SelectedKompetence {  get; set; }
     public SelectList Kompetencer { get; set; }
 
     public List<Skema> Vagtplan { get; set; }
@@ -23,21 +25,28 @@ public class TilføjMedarbejderModel : PageModel
     public Rolle Rolle { get; set; }
 
     private IMedabejderDataService _medarbejderDataService;
+    private IKompetenceDataService _kompetenceDataService;
 
 
-    public TilføjMedarbejderModel(IMedabejderDataService medabejderDataService)
+    public TilføjMedarbejderModel(IMedabejderDataService medabejderDataService, IKompetenceDataService kompetenceDataService)
     {
         _medarbejderDataService = medabejderDataService;
+        _kompetenceDataService = kompetenceDataService;
+
+
+        var komList = _kompetenceDataService.GetAll();
+        Kompetencer = new SelectList(komList, nameof(Kompetence.Id), nameof(Kompetence.Navn));
     }
 
 
 
     public void OnGet()
     {
-        if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
-        {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        }
+        //if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
+        //{
+        //    HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //}
+
     }
 
         public IActionResult Onpost()

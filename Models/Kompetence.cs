@@ -12,17 +12,16 @@ namespace EksamenSem2.Models;
 public partial class Kompetence
 {
     [Key]
-    [Column("Kompetence_ID")]
-    public int KompetenceId { get; set; }
+    public int Id { get; set; }
 
     [StringLength(255)]
     [Unicode(false)]
     public string Navn { get; set; }
 
-    [Column("Kompetence")]
+    [Column("Beskrivelse")]
     [StringLength(255)]
     [Unicode(false)]
-    public string Kompetence1 { get; set; }
+    public string Beskrivelse { get; set; }
 
     [ForeignKey("KompetenceId")]
     [InverseProperty("Kompetences")]
