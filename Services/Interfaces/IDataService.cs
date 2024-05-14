@@ -6,7 +6,7 @@ public interface IDataService<T> where T : class, IHasId
 
     T? Read(int id);
 
-    bool Delete(int id);
+    bool Delete(int id); // T? bool Delete(int id); - ???, ville hjælpe til delete af medarbejder i FjernMedarbejder.cshtml.cs
 
     List<T> GetAll();
 }
