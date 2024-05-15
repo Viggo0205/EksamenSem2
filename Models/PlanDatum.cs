@@ -27,4 +27,7 @@ public partial class PlanDatum
     public string Beskrivelse { get; set; }
 
     public int? TotalTimer { get; set; }
+
+    [InverseProperty("Plan")]
+    public virtual ICollection<VagtPlan> VagtPlans { get; set; } = new List<VagtPlan>();
 }

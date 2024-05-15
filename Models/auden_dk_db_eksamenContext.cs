@@ -21,13 +21,17 @@ public partial class auden_dk_db_eksamenContext : DbContext
 
     public virtual DbSet<Medarbejder> Medarbejders { get; set; }
 
+    public virtual DbSet<MedarbejderKompetence> MedarbejderKompetences { get; set; }
+
     public virtual DbSet<PlanDatum> PlanData { get; set; }
 
     public virtual DbSet<Rolle> Rolles { get; set; }
 
+    public virtual DbSet<VagtPlan> VagtPlans { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,25 +45,19 @@ public partial class auden_dk_db_eksamenContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Medarbej__1707B576E1F55D7B");
 
             entity.HasOne(d => d.Rolle).WithMany(p => p.Medarbejders).HasConstraintName("FK__Medarbejd__Rolle__6E01572D");
+        });
 
-            entity.HasMany(d => d.Kompetences).WithMany(p => p.Medarbejders)
-                .UsingEntity<Dictionary<string, object>>(
-                    "MedarbejderKompetence",
-                    r => r.HasOne<Kompetence>().WithMany()
-                        .HasForeignKey("KompetenceId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Medarbejd__Kompe__7B5B524B"),
-                    l => l.HasOne<Medarbejder>().WithMany()
-                        .HasForeignKey("MedarbejderId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Medarbejd__Medar__7A672E12"),
-                    j =>
-                    {
-                        j.HasKey("MedarbejderId", "KompetenceId").HasName("MedarbejderKompetence_ID");
-                        j.ToTable("MedarbejderKompetence");
-                        j.IndexerProperty<int>("MedarbejderId").HasColumnName("Medarbejder_ID");
-                        j.IndexerProperty<int>("KompetenceId").HasColumnName("Kompetence_ID");
-                    });
+        modelBuilder.Entity<MedarbejderKompetence>(entity =>
+        {
+            entity.HasKey(e => new { e.MedarbejderId, e.KompetenceId }).HasName("MedarbejderKompetence_ID");
+
+            entity.HasOne(d => d.Kompetence).WithMany(p => p.MedarbejderKompetences)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Medarbejd__Kompe__7B5B524B");
+
+            entity.HasOne(d => d.Medarbejder).WithMany(p => p.MedarbejderKompetences)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Medarbejd__Medar__7A672E12");
         });
 
         modelBuilder.Entity<PlanDatum>(entity =>
@@ -70,6 +68,19 @@ public partial class auden_dk_db_eksamenContext : DbContext
         modelBuilder.Entity<Rolle>(entity =>
         {
             entity.HasKey(e => e.RolleId).HasName("PK__Rolle__D12F04A365593430");
+        });
+
+        modelBuilder.Entity<VagtPlan>(entity =>
+        {
+            entity.HasKey(e => e.VagtPlanId).HasName("PK__VagtPlan__5F528B9FBFE55D29");
+
+            entity.HasOne(d => d.Medarbejder).WithMany(p => p.VagtPlans)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__VagtPlan__Medarb__02FC7413");
+
+            entity.HasOne(d => d.Plan).WithMany(p => p.VagtPlans)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__VagtPlan__PlanId__03F0984C");
         });
 
         OnModelCreatingPartial(modelBuilder);

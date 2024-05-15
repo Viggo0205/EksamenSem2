@@ -39,7 +39,6 @@ public class TilføjMedarbejderModel : PageModel
     }
 
 
-
     public void OnGet()
     {
         //if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
@@ -56,9 +55,16 @@ public class TilføjMedarbejderModel : PageModel
                 return Page();
             }
 
+            Medarbejder.MedarbejderKompetences = new List<MedarbejderKompetence>();
+
+            foreach (int id in SelectedKompetence)
+            {
+                Medarbejder.MedarbejderKompetences.Add(new MedarbejderKompetence() { KompetenceId = id });
+            }
+
             _medarbejderDataService.Create(Medarbejder);
             return RedirectToPage("/GetAllMedarbejderer");
         }
 
 }
-
+   

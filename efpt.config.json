@@ -33,10 +33,15 @@
       {
          "Name": "[dbo].[Rolle]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VagtPlan]",
+         "ObjectType": 0
       }
    ],
    "UiHint": null,
    "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDateOnlyTimeOnly": false,
@@ -47,7 +52,7 @@
    "UseHierarchyId": false,
    "UseInflector": true,
    "UseLegacyPluralizer": false,
-   "UseManyToManyEntity": false,
+   "UseManyToManyEntity": true,
    "UseNoDefaultConstructor": false,
    "UseNoNavigations": false,
    "UseNoObjectFilter": false,

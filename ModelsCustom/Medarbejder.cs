@@ -13,7 +13,7 @@ public partial class Medarbejder : IHasId
     /// 
     public Medarbejder() {}
 
-    public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password, Kompetence kompetences, double timeløn)
+    public Medarbejder(string navn, string email, int tlfNr, int rolleId, string password, MedarbejderKompetence kompetences, double timeløn)
     {
         //Id = 0;
         Navn = navn;
@@ -21,7 +21,7 @@ public partial class Medarbejder : IHasId
         TlfNr = tlfNr;
         RolleId = rolleId;
         Password = password;
-        Kompetences = (ICollection<Kompetence>)kompetences;
+        MedarbejderKompetences = (ICollection<MedarbejderKompetence>)kompetences;
         Timeløn = timeløn;
     }
 
