@@ -18,12 +18,10 @@ public partial class Kompetence
     [Unicode(false)]
     public string Navn { get; set; }
 
-    [Column("Beskrivelse")]
     [StringLength(255)]
     [Unicode(false)]
     public string Beskrivelse { get; set; }
 
-    [ForeignKey("KompetenceId")]
-    [InverseProperty("Kompetences")]
-    public virtual ICollection<Medarbejder> Medarbejders { get; set; } = new List<Medarbejder>();
+    [InverseProperty("Kompetence")]
+    public virtual ICollection<MedarbejderKompetence> MedarbejderKompetences { get; set; } = new List<MedarbejderKompetence>();
 }

@@ -35,11 +35,10 @@ public partial class Medarbejder
     [Unicode(false)]
     public string Password { get; set; }
 
+    [InverseProperty("Medarbejder")]
+    public virtual ICollection<MedarbejderKompetence> MedarbejderKompetences { get; set; } = new List<MedarbejderKompetence>();
+
     [ForeignKey("RolleId")]
     [InverseProperty("Medarbejders")]
     public virtual Rolle Rolle { get; set; }
-
-    [ForeignKey("MedarbejderId")]
-    [InverseProperty("Medarbejders")]
-    public virtual ICollection<Kompetence> Kompetences { get; set; } = new List<Kompetence>();
 }

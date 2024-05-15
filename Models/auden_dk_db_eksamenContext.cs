@@ -21,6 +21,8 @@ public partial class auden_dk_db_eksamenContext : DbContext
 
     public virtual DbSet<Medarbejder> Medarbejders { get; set; }
 
+    public virtual DbSet<MedarbejderKompetence> MedarbejderKompetences { get; set; }
+
     public virtual DbSet<PlanDatum> PlanData { get; set; }
 
     public virtual DbSet<Rolle> Rolles { get; set; }
@@ -41,25 +43,19 @@ public partial class auden_dk_db_eksamenContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Medarbej__1707B576E1F55D7B");
 
             entity.HasOne(d => d.Rolle).WithMany(p => p.Medarbejders).HasConstraintName("FK__Medarbejd__Rolle__6E01572D");
+        });
 
-            entity.HasMany(d => d.Kompetences).WithMany(p => p.Medarbejders)
-                .UsingEntity<Dictionary<string, object>>(
-                    "MedarbejderKompetence",
-                    r => r.HasOne<Kompetence>().WithMany()
-                        .HasForeignKey("KompetenceId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Medarbejd__Kompe__7B5B524B"),
-                    l => l.HasOne<Medarbejder>().WithMany()
-                        .HasForeignKey("MedarbejderId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Medarbejd__Medar__7A672E12"),
-                    j =>
-                    {
-                        j.HasKey("MedarbejderId", "KompetenceId").HasName("MedarbejderKompetence_ID");
-                        j.ToTable("MedarbejderKompetence");
-                        j.IndexerProperty<int>("MedarbejderId").HasColumnName("Medarbejder_ID");
-                        j.IndexerProperty<int>("KompetenceId").HasColumnName("Kompetence_ID");
-                    });
+        modelBuilder.Entity<MedarbejderKompetence>(entity =>
+        {
+            entity.HasKey(e => new { e.MedarbejderId, e.KompetenceId }).HasName("MedarbejderKompetence_ID");
+
+            entity.HasOne(d => d.Kompetence).WithMany(p => p.MedarbejderKompetences)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Medarbejd__Kompe__7B5B524B");
+
+            entity.HasOne(d => d.Medarbejder).WithMany(p => p.MedarbejderKompetences)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Medarbejd__Medar__7A672E12");
         });
 
         modelBuilder.Entity<PlanDatum>(entity =>
