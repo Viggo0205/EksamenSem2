@@ -9,15 +9,11 @@ namespace EksamenSem2.Services
         {
             Medarbejder? medarbejder = GetAll().FirstOrDefault(u => u.Email == providedEmail);
 
+            // Check if the email exists in the database and if the password matches
             if (medarbejder == null || medarbejder.Password != providedPassword)
                 return null;
 
             return medarbejder;
-        }
-
-        public Medarbejder? VerifyUser()
-        {
-            throw new NotImplementedException();
         }
     }
 }

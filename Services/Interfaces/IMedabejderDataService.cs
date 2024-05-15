@@ -9,7 +9,6 @@ namespace EksamenSem2.Services.Interfaces
         /// </summary>
         /// <returns>User matching the provided information, otherwise null.</returns>
         /// 
-        Medarbejder? VerifyUser();
         Medarbejder? VerifyUser(string providedEmail, string providedPassword);
     }
 }
