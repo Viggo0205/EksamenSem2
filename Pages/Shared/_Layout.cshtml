@@ -33,10 +33,13 @@
                             <a class="nav-link text-dark" asp-page="/Kalender/Kalander">Kalender</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text" asp-area="" asp-page="/TilføjMedarbejder">Tilføj Medarbejder</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text" asp-area="" asp-page="/GetAllMedarbejderer">Alle medarbejder</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/TilføjMedarbejder">Tilføj Medarbejder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/FjernMedarbejder">Fjern Medarbejder</a>
                         </li>
                         @{
                             if (LogInPageModel.LoggedInMedarbejder == null) // No one logged in -> show "Log in"

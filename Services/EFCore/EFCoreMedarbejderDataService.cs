@@ -30,7 +30,7 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
     public Medarbejder? VerifyUser(string providedEmail, string providedPassword)
     {
         // throw new NotImplementedException();
-        return new Medarbejder() { Email = providedEmail };
+        return new Medarbejder() { Email = providedEmail };  //Mangler { Password = providedPassword } ???
     }
 
     public Medarbejder? VerifyUser()
