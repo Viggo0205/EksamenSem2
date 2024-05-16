@@ -37,5 +37,30 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
     {
         throw new NotImplementedException();
     }
+
+     public override bool Delete(int id)
+    {
+        using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+        foreach (MedarbejderKompetence mk in context.MedarbejderKompetences)
+        {
+            if (mk.MedarbejderId == id)
+            {
+                context.MedarbejderKompetences.Remove(mk);
+            }
+        }
+
+        foreach (VagtPlan mk in context.VagtPlans)
+        {
+            if (mk.MedarbejderId == id)
+            {
+                context.VagtPlans.Remove(mk);
+            }
+        }
+        context.SaveChanges();
+
+        return base.Delete(id);
+    }
+        
 }
 
