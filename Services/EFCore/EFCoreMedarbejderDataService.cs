@@ -27,15 +27,17 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
     //    return (context.SaveChanges() > 0);
     //}
 
-    public Medarbejder? VerifyUser(string providedEmail, string providedPassword)
-    {
-        // throw new NotImplementedException();
-        return new Medarbejder() { Email = providedEmail };  //Mangler { Password = providedPassword } ???
-    }
 
-    public Medarbejder? VerifyUser()
-    {
-        throw new NotImplementedException();
-    }
+        public Medarbejder? VerifyUser(string providedUserName, string providedPassword)
+        {
+            Medarbejder? medarbejder = GetAll().FirstOrDefault(u => u.Email == providedUserName);
+
+            if (medarbejder == null || medarbejder.Password != providedPassword)
+                return null;
+
+            return medarbejder;
+        }
+
+
 }
 

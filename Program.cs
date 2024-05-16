@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 
-
 // Add services to the container.
 
 
@@ -26,6 +25,7 @@ builder.Services.AddRazorPages(options =>
 builder.Services.AddSingleton<IVagtPlanDataService, EFCoreVagtPlanDataService>();
 
 builder.Services.AddSingleton<IMedabejderDataService, EFCoreMedarbejderDataService>();
+
 builder.Services.AddSingleton<IKompetenceDataService, EFCoreKompetenceDataService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>

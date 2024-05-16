@@ -9,7 +9,6 @@ using System.Security.Claims;
 
 namespace EksamenSem2.Pages.Login
 {
-
     public class LogInPageModel : PageModel
     {
         private IMedabejderDataService _medarbejderDataService;
@@ -19,8 +18,7 @@ namespace EksamenSem2.Pages.Login
         [BindProperty]
         public string Email { get; set; }
 
-
-        [BindProperty, DataType(DataType.Password)]
+        [BindProperty, DataType(DataType.Password), Required(ErrorMessage = "Password cannot be empty")]
         public string Password { get; set; }
 
         public string Message { get; set; }
@@ -30,20 +28,23 @@ namespace EksamenSem2.Pages.Login
             _medarbejderDataService = medarbejderDataService;
         }
 
-        //public IMedabejderDataService Get_medarbejderDataService()
-        //{
-        //    return _medarbejderDataService;
-        //}
-
         public async Task<IActionResult> OnPost()
         {
+            // Check if the password is null or empty
+            if (string.IsNullOrEmpty(Password))
+            {
+                Message = "Password cannot be empty";
+                return Page();
+            }
+
             LoggedInMedarbejder = _medarbejderDataService.VerifyUser(Email, Password);
 
             if (LoggedInMedarbejder == null)
             {
-                Message = "Invalid attempt";
+                Message = "Invalid email or password";
                 return Page();
             }
+
 
             // Log in with identity
             await HttpContext.SignInAsync(
@@ -52,12 +53,13 @@ namespace EksamenSem2.Pages.Login
 
             return RedirectToPage("/Index");
         }
+
         private ClaimsPrincipal BuildClaimsPrincipal(Medarbejder medarbejder)
         {
             // Build Claims
             List<Claim> claims = new List<Claim> {
-          new Claim(ClaimTypes.Name, medarbejder.Email)
-      };
+                new Claim(ClaimTypes.Name, medarbejder.Email)
+            };
 
             if (medarbejder.Email == "admin")
                 claims.Add(new Claim(ClaimTypes.Role, "admin"));
@@ -70,8 +72,5 @@ namespace EksamenSem2.Pages.Login
             // Create and return principal
             return new ClaimsPrincipal(claimsIdentity);
         }
-
-
     }
 }
-
