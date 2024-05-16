@@ -31,7 +31,7 @@ public partial class auden_dk_db_eksamenContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh; TrustServerCertificate = True");
+        => optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh;TrustServerCertificate = True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,7 +72,7 @@ public partial class auden_dk_db_eksamenContext : DbContext
 
         modelBuilder.Entity<VagtPlan>(entity =>
         {
-            entity.HasKey(e => e.VagtPlanId).HasName("PK__VagtPlan__5F528B9FBFE55D29");
+            entity.HasKey(e => e.Id).HasName("PK__VagtPlan__5F528B9FBFE55D29");
 
             entity.HasOne(d => d.Medarbejder).WithMany(p => p.VagtPlans)
                 .OnDelete(DeleteBehavior.ClientSetNull)

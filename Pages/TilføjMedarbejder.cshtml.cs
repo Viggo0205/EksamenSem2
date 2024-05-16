@@ -41,11 +41,6 @@ public class TilføjMedarbejderModel : PageModel
 
     public void OnGet()
     {
-        //if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
-        //{
-        //    HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //}
-
     }
 
         public IActionResult Onpost()

@@ -12,8 +12,7 @@ namespace EksamenSem2.Models;
 public partial class VagtPlan
 {
     [Key]
-    [Column("VagtPlan_ID")]
-    public int VagtPlanId { get; set; }
+    public int Id { get; set; }
 
     public int MedarbejderId { get; set; }
 

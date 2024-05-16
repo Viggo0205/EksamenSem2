@@ -1,23 +1,31 @@
 using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-
 // Add services to the container.
+
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<auden_dk_db_eksamenContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddRazorPages(options =>
 {
     // Add authorization options
-    options.Conventions.AuthorizeFolder("/Kalender");
-
+    //options.Conventions.AuthorizeFolder("/Kalender");
+   // options.Conventions.AuthorizeFolder("/Skema");
     options.Conventions.AuthorizePage("/GetAllMedarbejderer");
     options.Conventions.AuthorizePage("/TilføjMedarbejder");
 });
 
+builder.Services.AddSingleton<IVagtPlanDataService, EFCoreVagtPlanDataService>();
+
 builder.Services.AddSingleton<IMedabejderDataService, EFCoreMedarbejderDataService>();
+
 builder.Services.AddSingleton<IKompetenceDataService, EFCoreKompetenceDataService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>

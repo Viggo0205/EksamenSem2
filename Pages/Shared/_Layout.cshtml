@@ -27,7 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Kalender/Skema">Vagtplan</a>
+                            <a class="nav-link text-dark" asp-page="/Kalender/VagtPlan">Vagtplan</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Kalender/Kalander">Kalender</a>
@@ -51,10 +51,10 @@
                             else // Someone logged in -> show user name and "Log out"
                             {
                                 <li class="nav-item nav-link text-dark me-3">
-                                    <span>User:</span> <span><b>@LogInPageModel.LoggedInMedarbejder.Email</b></span>
+                                    <span>Medarbejder:</span> <span><b>@LogInPageModel.LoggedInMedarbejder.Email</b></span>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="btn btn-primary" asp-area="" asp-page="/LogIn/LogOutPage">Log out</a>
+                                    <a class="btn btn-primary" asp-area="" asp-page="/LogIn/LogOut">Log out</a>
                                 </li>
                             }
                         }

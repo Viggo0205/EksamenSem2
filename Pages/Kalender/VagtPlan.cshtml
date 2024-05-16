@@ -1,0 +1,51 @@
+﻿@page
+@model EksamenSem2.Pages.Kalender.VagtPlanModel
+@{
+    ViewData["Title"] = "VagtPlan";
+}
+
+<h2>VagtPlan</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="VagtPlan.MedarbejderId">Medarbejder ID:</label>
+        <select asp-items = "@Model.Emails" asp-for="VagtPlan.MedarbejderId" class = "form-control"></select>
+        <span asp-validation-for="VagtPlan.MedarbejderId" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="StartTime">Start Time:</label>
+        <input asp-for="StartTime" type="datetime-local" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="EndTime">End Time:</label>
+        <input asp-for="EndTime" type="datetime-local" />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+    </div>
+    <button type="submit">Add VagtPlan</button>
+</form>
+
+<h3>Existing VagtPlan</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Medarbejder ID</th>
+            @* <th>Medarbejder Navn</th> *@
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PlanDatas)
+        {
+            <tr>
+                <td>@item.VagtPlans.FirstOrDefault()?.MedarbejderId</td>
+                
+                <td>@item.Dato @item.StartTid</td>
+                <td>@item.Dato @item.SlutTid</td>
+                <td>@item.Beskrivelse</td>
+            </tr>
+        }
+    </tbody>
+</table>
