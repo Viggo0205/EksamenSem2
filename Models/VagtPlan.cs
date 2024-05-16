@@ -18,6 +18,11 @@ public partial class VagtPlan
 
     public int PlanId { get; set; }
 
+    public double? Overtid { get; set; }
+
+    [Column(TypeName = "text")]
+    public string Beskrivelse { get; set; }
+
     [ForeignKey("MedarbejderId")]
     [InverseProperty("VagtPlans")]
     public virtual Medarbejder Medarbejder { get; set; }

@@ -20,6 +20,7 @@ namespace EksamenSem2.Pages.Kalender
         public DateTime EndTime { get; set; }
         public List<PlanDatum> PlanDatas { get; set; }
 
+
         public SelectList Emails { get; set; }
         public VagtPlanModel(IMedabejderDataService service, IVagtPlanDataService vagtPlanDataService)
         {
@@ -40,7 +41,7 @@ namespace EksamenSem2.Pages.Kalender
                     Dato = StartTime.Date,
                     StartTid = StartTime.TimeOfDay,
                     SlutTid = EndTime.TimeOfDay,
-                    Beskrivelse = "Scheduled shift"
+                    //Beskrivelse = "Scheduled shift"
                 };
 
                 _vagtPlanDataService.AddPlanData(planData);

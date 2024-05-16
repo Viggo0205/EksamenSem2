@@ -11,7 +11,7 @@ namespace EksamenSem2.Models;
 public partial class PlanDatum
 {
     [Key]
-    [Column("Plan_ID")]
+    [Column("Plan_id")]
     public int PlanId { get; set; }
 
     [Column(TypeName = "date")]
@@ -20,11 +20,6 @@ public partial class PlanDatum
     public TimeSpan? StartTid { get; set; }
 
     public TimeSpan? SlutTid { get; set; }
-
-    public double? Overtid { get; set; }
-
-    [Column(TypeName = "text")]
-    public string Beskrivelse { get; set; }
 
     public int? TotalTimer { get; set; }
 

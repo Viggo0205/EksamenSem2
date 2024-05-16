@@ -29,5 +29,13 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         context.PlanData.Add(planData);
         context.SaveChanges();
     }
+
+    public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
+    {
+        vagtPlan.Overtid = time;
+        vagtPlan.Beskrivelse = description;
+        return vagtPlan;
+    }
+
 }
 
