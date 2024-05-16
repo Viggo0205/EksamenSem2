@@ -30,7 +30,7 @@ public class EFCoreDataServiceBase<T> : IDataService<T> where T : class, IHasId
         return GetAllWithIncludes(context).FirstOrDefault(t => t.Id == id);
     }
 
-    public bool Delete(int id)
+    virtual public bool Delete(int id)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
 

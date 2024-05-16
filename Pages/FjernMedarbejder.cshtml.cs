@@ -19,20 +19,16 @@ namespace EksamenSem2.Pages
         }
 
 
-        public void OnGet()
+        public void OnGet(int id)
         {
+            Medarbejder = _medarbejderDataService.Read(id);
         }
+
         public IActionResult Onpost()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             _medarbejderDataService.Delete(Medarbejder.Id);
             return RedirectToPage("/GetAllMedarbejderer");
         }
-
 
     }
 }
