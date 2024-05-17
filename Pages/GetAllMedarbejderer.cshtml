@@ -18,17 +18,9 @@
                                 <h5>@(medarbejder.Address)</h5>
                             </div> *@
                             <div>
-                                <a class="btn btn-outline-secondary btn-sm" type="button" title="View" asp-page="View" asp-route-id="@medarbejder.Id"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-outline-primary btn-sm" type="button" title="Edit" asp-page="Edit" asp-route-id="@medarbejder.Id"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-outline-danger btn-sm" type="button" title="Delete" onclick="confirmDelete('@medarbejder.Id')"><i class="fa fa-trash"></i></a>
-
-                                <script>
-                                    function confirmDelete(id) {
-                                        if (confirm("Are you sure you want to delete this item?")) {
-                                            window.location.href = "/GetAllMedarbejderer";
-                                        }
-                                    }
-                                </script>
+                                <a class="btn btn-outline-secondary btn-sm" type="button" title="View" asp-page="View" asp-route-id="@medarbejder.Id"><i class="fa fa-eye"></i>Info</a>
+                                <a class="btn btn-outline-primary btn-sm" type="button" title="Edit" asp-page="Edit" asp-route-id="@medarbejder.Id"><i class="fa fa-edit"></i>Opdater</a>
+                                <a class="btn btn-outline-danger btn-sm" type="button" title="Delete" asp-page="FjernMedarbejder" asp-route-id="@medarbejder.Id"><i class="fa fa-trash"></i>Fjern</a>
                             </div>
                         </div>
                     </div>

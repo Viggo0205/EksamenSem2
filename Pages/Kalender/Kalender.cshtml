@@ -1,0 +1,46 @@
+﻿@page
+@model EksamenSem2.Pages.Kalender.KalenderModel
+@{
+    ViewData["Title"] = "Kalender";
+    var daysOfWeek = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
+}
+
+<h2>Kalender</h2>
+
+<div>
+    <form method="post">
+        <button type="submit" asp-page-handler="PreviousWeek">Previous Week</button>
+        <button type="submit" asp-page-handler="NextWeek">Next Week</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (var day in daysOfWeek)
+            {
+                <th>@day</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var day in daysOfWeek)
+            {
+                <td>
+                    @{
+                        var date = Model.StartOfWeek.AddDays((int)day);
+                        var plans = Model.WeeklyPlanData.Where(p => p.Dato == date).ToList();
+                    }
+                    <strong>@date.ToShortDateString()</strong>
+                    <ul>
+                        @foreach (var plan in plans)
+                        {
+                            <li>@plan.StartTid - @plan.SlutTid</li>
+                        }
+                    </ul>
+                </td>
+            }
+        </tr>
+    </tbody>
+</table>
