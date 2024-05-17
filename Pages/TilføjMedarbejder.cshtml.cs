@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using EksamenSem2.ModelsCustom;
 
 
 public class TilføjMedarbejderModel : PageModel
@@ -18,24 +19,27 @@ public class TilføjMedarbejderModel : PageModel
     [BindProperty]
     public int[] SelectedKompetence {  get; set; }
     public SelectList Kompetencer { get; set; }
-
     public List<Skema> Vagtplan { get; set; }
     public string Password { get; set; }
-    public int RolleId { get; set; }
-    public Rolle Rolle { get; set; }
+    public SelectList SelectedRolle { get; set; }
+    [BindProperty]
+    public int RolleId {  get; set; }
+   
 
     private IMedabejderDataService _medarbejderDataService;
     private IKompetenceDataService _kompetenceDataService;
+    private IRolleDataService _RolleDataService;
 
 
-    public TilføjMedarbejderModel(IMedabejderDataService medabejderDataService, IKompetenceDataService kompetenceDataService)
+    public TilføjMedarbejderModel(IMedabejderDataService medabejderDataService, IKompetenceDataService kompetenceDataService, IRolleDataService RolleDataSerivce)
     {
         _medarbejderDataService = medabejderDataService;
         _kompetenceDataService = kompetenceDataService;
-
+        _RolleDataService = RolleDataSerivce;
 
         var komList = _kompetenceDataService.GetAll();
         Kompetencer = new SelectList(komList, nameof(Kompetence.Id), nameof(Kompetence.Navn));
+        SelectedRolle = new SelectList(_RolleDataService.GetAll(), nameof(Rolle.Id), nameof(Rolle.Navn));
     }
 
 
@@ -57,7 +61,9 @@ public class TilføjMedarbejderModel : PageModel
                 Medarbejder.MedarbejderKompetences.Add(new MedarbejderKompetence() { KompetenceId = id });
             }
 
-            _medarbejderDataService.Create(Medarbejder);
+        Medarbejder.RolleId = RolleId;
+
+        _medarbejderDataService.Create(Medarbejder);
             return RedirectToPage("/GetAllMedarbejderer");
         }
 

@@ -2,6 +2,7 @@ using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using EksamenSem2.Services.EFCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,7 @@ builder.Services.AddSingleton<IVagtPlanDataService, EFCoreVagtPlanDataService>()
 builder.Services.AddSingleton<IMedabejderDataService, EFCoreMedarbejderDataService>();
 
 builder.Services.AddSingleton<IKompetenceDataService, EFCoreKompetenceDataService>();
-
+builder.Services.AddSingleton<IRolleDataService, EFCoreRolleDataService>();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.MinimumSameSitePolicy = SameSiteMode.None;

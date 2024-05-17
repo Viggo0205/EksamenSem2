@@ -12,8 +12,7 @@ namespace EksamenSem2.Models;
 public partial class Rolle
 {
     [Key]
-    [Column("Rolle_ID")]
-    public int RolleId { get; set; }
+    public int Id { get; set; }
 
     [StringLength(255)]
     [Unicode(false)]

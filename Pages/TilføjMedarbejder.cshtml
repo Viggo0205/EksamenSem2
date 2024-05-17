@@ -23,16 +23,13 @@
         <input asp-for="Medarbejder.Password" class="form-control" />
         <sPan asp-validation-for="Medarbejder.Password" class="text-danger"></sPan>
     </div>
+
     <div class="form-group">
-        <label asp-for="Medarbejder.RolleId" class="control-label"></label>
-        <input asp-for="Medarbejder.RolleId" class="form-control" />
-        <sPan asp-validation-for="Medarbejder.RolleId" class="text-danger"></sPan>
+        <label asp-for="RolleId">Rolle</label>
+        <select asp-for="RolleId" asp-items="@Model.SelectedRolle" class="form-control"></select>
+        <span asp-validation-for="RolleId" class="text-danger"></span>
     </div>
-    @* <div class="form-group">
-        <label asp-for="Medarbejder.Kompetences" class="control-label"></label>
-        <input asp-for="Medarbejder.Kompetences" class="form-control" />
-        <sPan asp-validation-for="Medarbejder.Kompetences" class="text-danger"></sPan>
-    </div> *@
+
     <div class="form-group">
         <label asp-for="Medarbejder.Timeløn" class="control-label"></label>
         <input asp-for="Medarbejder.Timeløn" class="form-control" />

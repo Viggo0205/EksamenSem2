@@ -7,14 +7,11 @@ public partial class Rolle : IHasId
     public Rolle(){}
 
     public Rolle(string navn, string rettigheder)
-    {
-        Id = RolleId;
+    {   
         Navn = navn;
         Rettigheder = rettigheder;
     }
     
-    public int Id { get; set; }
-
-
+    //public int Id { get; set; }
 }
 

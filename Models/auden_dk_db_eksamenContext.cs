@@ -67,7 +67,7 @@ public partial class auden_dk_db_eksamenContext : DbContext
 
         modelBuilder.Entity<Rolle>(entity =>
         {
-            entity.HasKey(e => e.RolleId).HasName("PK__Rolle__D12F04A365593430");
+            entity.HasKey(e => e.Id).HasName("PK__Rolle__D12F04A365593430");
         });
 
         modelBuilder.Entity<VagtPlan>(entity =>
