@@ -23,7 +23,6 @@ builder.Services.AddRazorPages(options =>
 });
 
 builder.Services.AddSingleton<IVagtPlanDataService, EFCoreVagtPlanDataService>();
-
 builder.Services.AddSingleton<IMedabejderDataService, EFCoreMedarbejderDataService>();
 
 builder.Services.AddSingleton<IKompetenceDataService, EFCoreKompetenceDataService>();
