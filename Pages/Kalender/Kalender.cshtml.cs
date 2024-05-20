@@ -13,25 +13,26 @@ namespace EksamenSem2.Pages.Kalender
     {
         private readonly IVagtPlanDataService _vagtPlanDataService;
 
-        public KalenderModel(IVagtPlanDataService vagtPlanDataService)
-        {
-            _vagtPlanDataService = vagtPlanDataService;
-        }
-
-        [BindProperty]
+        [TempData]
         public DateTime StartOfWeek { get; set; }
 
         public List<PlanDatum> WeeklyPlanData { get; set; }
 
+        public KalenderModel(IVagtPlanDataService vagtPlanDataService) // CHECK IF NEEDED
+        {
+            _vagtPlanDataService = vagtPlanDataService;
+        }
+
         public void OnGet(DateTime? startOfWeek)
         {
-            StartOfWeek = startOfWeek ?? DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+            StartOfWeek = startOfWeek ?? (TempData["StartOfWeek"] as DateTime?) ?? DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
             LoadWeeklyPlanData();
         }
 
         public IActionResult OnPostPreviousWeek()
         {
             StartOfWeek = StartOfWeek.AddDays(-7);
+            TempData["StartOfWeek"] = StartOfWeek;
             LoadWeeklyPlanData();
             return Page();
         }
@@ -39,6 +40,14 @@ namespace EksamenSem2.Pages.Kalender
         public IActionResult OnPostNextWeek()
         {
             StartOfWeek = StartOfWeek.AddDays(7);
+            TempData["StartOfWeek"] = StartOfWeek;
+            LoadWeeklyPlanData();
+            return Page();
+        }
+        public IActionResult OnPostCurrentWeek()
+        {
+            StartOfWeek = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+            TempData["StartOfWeek"] = StartOfWeek;
             LoadWeeklyPlanData();
             return Page();
         }
@@ -51,4 +60,5 @@ namespace EksamenSem2.Pages.Kalender
                 .ToList();
         }
     }
+
 }
