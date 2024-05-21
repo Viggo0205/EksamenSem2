@@ -5,7 +5,6 @@ namespace EksamenSem2.ModelsCustom
 {
     public partial class PlanDatum
     {
-
         public DateTime? Dato { get; set; }
 
         public TimeSpan? StartTid { get; set; }

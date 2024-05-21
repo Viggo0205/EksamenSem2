@@ -37,5 +37,22 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         return vagtPlan;
     }
 
+    public override bool Delete(int id)
+    {
+        using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+        foreach (PlanDatum pd in context.PlanData) //Sletter data for en vagtplan
+        {
+            if (pd.PlanId == id)
+            {
+                context.PlanData.Remove(pd);
+            }
+        }
+
+        context.SaveChanges();
+
+        return base.Delete(id);
+    }
+
 }
 

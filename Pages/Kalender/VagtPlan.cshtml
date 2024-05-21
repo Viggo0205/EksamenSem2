@@ -44,7 +44,13 @@
                 
                 <td>@item.Dato @item.StartTid</td>
                 <td>@item.Dato @item.SlutTid</td>
-                
+                <td>
+                    <form method="post" asp-page-handler="Delete">
+                        <input type="hidden" name="id" value="@item.VagtPlans.FirstOrDefault()?.Id"/>
+                        <button type="submit">Slet VagtPlan</button>
+                    </form>
+                </td>
+
             </tr>
         }
     </tbody>
