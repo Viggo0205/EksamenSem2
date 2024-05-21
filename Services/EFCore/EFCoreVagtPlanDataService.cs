@@ -51,9 +51,22 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
 }
     public void SaveChanges()
     {
-        using var context = new auden_dk_db_eksamenContext();
+        using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+        foreach (PlanDatum pd in context.PlanData) //Sletter data for en vagtplan
+        {
+            if (pd.PlanId == id)
+            {
+                context.PlanData.Remove(pd);
+            }
+        }
+
         context.SaveChanges();
+
+        return base.Delete(id);
     }
+
+
 
     public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
     {
