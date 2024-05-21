@@ -1,4 +1,6 @@
 ﻿@using EksamenSem2.Pages.Login
+@using System.Security.Claims
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,20 +37,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/TilføjMedarbejder">Tilføj Medarbejder</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/FjernMedarbejder">Fjern Medarbejder</a>
-                        </li>
                         @{
-                            if (LogInPageModel.LoggedInMedarbejder == null) // No one logged in -> show "Log in"
+                            // viser kun hvis medarbejder er logget in som admin.
+                            if (Context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value == "admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/TilføjMedarbejder">Tilføj Medarbejder</a>
+                                </li>
+                            }
+                        }
+                     
+                    
+                        @{
+                            if (LogInPageModel.LoggedInMedarbejder == null) // hvis der ikke er nogen logget in hvis log ind
                             {
                                 <li class="nav-item">
                                     <a class="btn btn-primary" asp-area="" asp-page="/LogIn/LogInPage">Log in</a>
                                 </li>
                             }
-                            else // Someone logged in -> show user name and "Log out"
+                            else // hvis nogen er logget ind -> hvis medarbejds email og  "Log out"
                             {
                                 <li class="nav-item nav-link text-dark me-3">
                                     <span>Medarbejder:</span> <span><b>@LogInPageModel.LoggedInMedarbejder.Email</b></span>
