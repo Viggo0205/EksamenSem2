@@ -52,7 +52,7 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         return base.Delete(id);
     }
 
-}
+
 
     public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
     {
