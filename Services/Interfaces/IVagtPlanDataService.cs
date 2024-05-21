@@ -7,5 +7,6 @@ namespace EksamenSem2.Services.Interfaces
     {
         List<PlanDatum> GetPlanDataWithIncludes();
         void AddPlanData(PlanDatum planData);
+        void UpdateInfoForVagtPlan(int id, TimeSpan startTime, TimeSpan endTime);
     }
 }

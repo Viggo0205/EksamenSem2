@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using EksamenSem2.ModelsCustom;
+//using EksamenSem2.ModelsCustom;
 using Microsoft.AspNetCore.Authorization;
 
 //[Authorize(Roles = "admin")]

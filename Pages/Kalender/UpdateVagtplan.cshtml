@@ -1,0 +1,23 @@
+﻿@page
+@model EksamenSem2.Pages.Kalender.UpdateVagtplanModel
+@{
+}
+<form method="post">
+    <div class="form-group">
+        <label asp-for="StartTid" class="control-label"></label>
+        <input asp-for="StartTid" class="form-control" />
+        <sPan asp-validation-for="StartTid" class="text-danger"></sPan>
+    </div>
+    <div class="form-group">
+        <label asp-for="SlutTid" class="control-label"></label>
+        <input asp-for="SlutTid" class="form-control" />
+        <sPan asp-validation-for="SlutTid" class="text-danger"></sPan>
+    </div>
+    <div class="form-group" hidden>
+        <label asp-for="PlanDatum.PlanId" class="control-label"></label>
+        <input asp-for="PlanDatum.PlanId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Opdater" class="btn btn-primary" />
+    </div>
+</form>

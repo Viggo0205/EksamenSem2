@@ -29,23 +29,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Kalender/VagtPlan">Vagtplan</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Kalender/Kalender">Kalender</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/UpdateInfoForMedarbejder">Opdater Info</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
-                        </li>
+                        
                         @{
                             // viser kun hvis medarbejder er logget in som admin.
                             if (Context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value == "admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/TilføjMedarbejder">Tilføj Medarbejder</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Kalender/VagtPlan">Vagtplan</a>
                                 </li>
                             }
                         }

@@ -29,6 +29,7 @@ namespace EksamenSem2.Pages.Kalender
         }
         public void OnGet()
         {
+
             PlanDatas = _vagtPlanDataService.GetPlanDataWithIncludes();
         }
 
