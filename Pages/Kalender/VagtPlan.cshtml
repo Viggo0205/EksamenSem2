@@ -30,7 +30,7 @@
     <thead>
         <tr>
             <th>Medarbejder ID</th>
-            @* <th>Medarbejder Navn</th> *@
+            <th>Medarbejder Navn</th>
             <th>Start Time</th>
             <th>End Time</th>
             
@@ -41,7 +41,7 @@
         {
             <tr>
                 <td>@item.VagtPlans.FirstOrDefault()?.MedarbejderId</td>
-                
+                <td>@item.VagtPlans.FirstOrDefault()?.Medarbejder.Navn</td>
                 <td>@item.Dato @item.StartTid</td>
                 <td>@item.Dato @item.SlutTid</td>
                 

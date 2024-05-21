@@ -15,6 +15,11 @@
     </form>
 </div>
 
+<div>
+    <p>Total time with overtime: @Model.TotalTimeWithOvertid hours</p>
+    <p>Total overtime: @Model.TotalOvertid hours</p>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -37,7 +42,9 @@
                     <ul>
                         @foreach (var plan in plans)
                         {
-                            <li>@plan.StartTid - @plan.SlutTid</li>
+                            <li>
+                                <a href="#" class="edit-vagt" data-vagt-id="@plan.PlanId">@plan.StartTid - @plan.SlutTid</a>
+                            </li>
                         }
                     </ul>
                 </td>
@@ -45,3 +52,47 @@
         </tr>
     </tbody>
 </table>
+
+<!-- Modal for editing VagtPlan -->
+<div id="editVagtModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="EditVagt">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit VagtPlan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="VagtPlanId" id="VagtPlanId" />
+                    <div class="form-group">
+                        <label for="Overtid">Overtid (hours)</label>
+                        <input type="number" step="0.1" class="form-control" id="Overtid" name="Overtid" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Beskrivelse">Beskrivelse</label>
+                        <textarea class="form-control" id="Beskrivelse" name="Beskrivelse" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.edit-vagt').click(function (e) {
+                e.preventDefault();
+                var vagtId = $(this).data('vagt-id');
+                $('#VagtPlanId').val(vagtId);
+                $('#editVagtModal').modal('show');
+            });
+        });
+    </script>
+}
