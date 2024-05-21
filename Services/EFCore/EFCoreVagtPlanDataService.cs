@@ -8,7 +8,6 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
 {
     protected override IQueryable<VagtPlan> GetAllWithIncludes(auden_dk_db_eksamenContext context)
     {
-        // Include related entities as needed
         return context.Set<VagtPlan>()
             .Include(vp => vp.Medarbejder)
             .Include(vp => vp.Plan);
@@ -30,11 +29,10 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         context.SaveChanges();
     }
 
-    public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
+    public VagtPlan GetById(int id)
     {
-        vagtPlan.Overtid = time;
-        vagtPlan.Beskrivelse = description;
-        return vagtPlan;
+        using var context = new auden_dk_db_eksamenContext();
+        return context.VagtPlans.Find(id);
     }
 
     public override bool Delete(int id)
@@ -56,3 +54,16 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
 
 }
 
+    public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
+    {
+        using var context = new auden_dk_db_eksamenContext();
+        var vagtPlanToUpdate = context.VagtPlans.Find(vagtPlan.Id);
+        if (vagtPlanToUpdate != null)
+        {
+            vagtPlanToUpdate.Overtid = time;
+            vagtPlanToUpdate.Beskrivelse = description;
+            context.SaveChanges();
+        }
+        return vagtPlanToUpdate;
+    }
+}
