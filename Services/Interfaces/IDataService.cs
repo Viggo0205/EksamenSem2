@@ -9,5 +9,7 @@ public interface IDataService<T> where T : class, IHasId
     bool Delete(int id);
 
     List<T> GetAll();
+
+    
 }
 

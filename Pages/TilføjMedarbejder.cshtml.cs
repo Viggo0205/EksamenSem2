@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EksamenSem2.ModelsCustom;
+using Microsoft.AspNetCore.Authorization;
 
-
+//[Authorize(Roles = "admin")]
 public class TilføjMedarbejderModel : PageModel
 {
     [BindProperty]
@@ -30,7 +31,7 @@ public class TilføjMedarbejderModel : PageModel
     private IKompetenceDataService _kompetenceDataService;
     private IRolleDataService _RolleDataService;
 
-
+   
     public TilføjMedarbejderModel(IMedabejderDataService medabejderDataService, IKompetenceDataService kompetenceDataService, IRolleDataService RolleDataSerivce)
     {
         _medarbejderDataService = medabejderDataService;

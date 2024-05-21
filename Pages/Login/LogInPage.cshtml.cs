@@ -58,11 +58,11 @@ namespace EksamenSem2.Pages.Login
         {
             // Build Claims
             List<Claim> claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, medarbejder.Email)
+                new Claim(ClaimTypes.Name, medarbejder.Email),
             };
 
-            if (medarbejder.Email == "admin")
-                claims.Add(new Claim(ClaimTypes.Role, "admin"));
+            if (medarbejder.RolleId == 1) { claims.Add(new Claim(ClaimTypes.Role, "admin")); }
+              
 
             // Create claims-based identity
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(
