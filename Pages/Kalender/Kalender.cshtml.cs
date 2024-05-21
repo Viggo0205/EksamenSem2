@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EksamenSem2.Pages.Helpers;
+using EksamenSem2.Pages.Login;
 
 namespace EksamenSem2.Pages.Kalender
 {
@@ -18,7 +19,19 @@ namespace EksamenSem2.Pages.Kalender
 
         public List<PlanDatum> WeeklyPlanData { get; set; }
 
-        public KalenderModel(IVagtPlanDataService vagtPlanDataService) // CHECK IF NEEDED
+        [BindProperty]
+        public int VagtPlanId { get; set; }
+
+        [BindProperty]
+        public double Overtid { get; set; }
+
+        [BindProperty]
+        public string Beskrivelse { get; set; }
+
+        public double TotalTimeWithOvertid { get; private set; }
+        public double TotalOvertid { get; private set; }
+
+        public KalenderModel(IVagtPlanDataService vagtPlanDataService)
         {
             _vagtPlanDataService = vagtPlanDataService;
         }
@@ -44,6 +57,7 @@ namespace EksamenSem2.Pages.Kalender
             LoadWeeklyPlanData();
             return Page();
         }
+
         public IActionResult OnPostCurrentWeek()
         {
             StartOfWeek = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
@@ -52,13 +66,59 @@ namespace EksamenSem2.Pages.Kalender
             return Page();
         }
 
+        public IActionResult OnPostEditVagt()
+        {
+            var vagtPlan = _vagtPlanDataService.GetById(VagtPlanId);
+            if (vagtPlan != null)
+            {
+                _vagtPlanDataService.RegisterOverTime(vagtPlan, Overtid, Beskrivelse);
+                _vagtPlanDataService.SaveChanges();
+            }
+            LoadWeeklyPlanData();
+            return Page();
+        }
+
         private void LoadWeeklyPlanData()
         {
             DateTime endOfWeek = StartOfWeek.AddDays(7);
             WeeklyPlanData = _vagtPlanDataService.GetPlanDataWithIncludes()
-                .Where(p => p.Dato >= StartOfWeek && p.Dato < endOfWeek)
+                .Where(p => p.Dato >= StartOfWeek && p.Dato < endOfWeek && p.VagtPlans.Select(vp => vp.MedarbejderId).Contains(LogInPageModel.LoggedInMedarbejder.Id))
                 .ToList();
+
+            CalculateTotalTimes();
+        }
+
+        private void CalculateTotalTimes()
+        {
+            TotalTimeWithOvertid = 0;
+            TotalOvertid = 0;
+
+            foreach (var plan in WeeklyPlanData)
+            {
+                foreach (var vagtPlan in plan.VagtPlans)
+                {
+                    // Sum up overtime
+                    TotalOvertid += vagtPlan.Overtid ?? 0;
+
+                    // Calculate the total planned time in hours considering multi-day spans
+                    var startTime = vagtPlan.Plan.StartTid.Value;
+                    var endTime = vagtPlan.Plan.SlutTid.Value;
+
+                    double plannedTime;
+                    if (endTime > startTime)
+                    {
+                        plannedTime = (endTime - startTime).TotalHours;
+                    }
+                    else
+                    {
+                        // If endTime is on the next day
+                        plannedTime = (endTime - startTime).TotalHours + 24;
+                    }
+                    plannedTime = Math.Round(plannedTime);
+                    // Sum up total time including overtime
+                    TotalTimeWithOvertid += plannedTime + (vagtPlan.Overtid ?? 0);
+                }
+            }
         }
     }
-
 }
