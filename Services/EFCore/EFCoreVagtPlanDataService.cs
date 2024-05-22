@@ -1,4 +1,5 @@
 ﻿using EksamenSem2.Models;
+//using EksamenSem2.ModelsCustom;
 using EksamenSem2.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.Linq;
 
 public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtPlanDataService
 {
+
+
     protected override IQueryable<VagtPlan> GetAllWithIncludes(auden_dk_db_eksamenContext context)
     {
         return context.Set<VagtPlan>()
@@ -35,6 +38,32 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         return context.VagtPlans.Find(id);
     }
 
+    public void UpdateInfoForVagtPlan(int id, TimeSpan startTid, TimeSpan slutTid)
+    {
+        using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+        PlanDatum planDatum = context.PlanData.Find(id);
+        planDatum.StartTid = startTid;
+        planDatum.SlutTid = slutTid;
+        context.PlanData.Update(planDatum);
+        context.SaveChanges();
+    }
+    public override bool Delete(int id)
+    {
+        using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+        foreach (PlanDatum pd in context.PlanData) //Sletter data for en vagtplan
+        {
+            if (pd.PlanId == id)
+            {
+                context.PlanData.Remove(pd);
+            }
+        }
+
+        context.SaveChanges();
+
+        return base.Delete(id);
+    }
     public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
     {
         using var context = new auden_dk_db_eksamenContext();
@@ -47,4 +76,16 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         }
         return vagtPlanToUpdate;
     }
+
+    public void SaveChanges()
+    {
+        throw new NotImplementedException();
+    }
 }
+    
+
+
+
+   
+
+

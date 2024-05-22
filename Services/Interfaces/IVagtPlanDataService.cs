@@ -9,5 +9,6 @@ namespace EksamenSem2.Services.Interfaces
         void AddPlanData(PlanDatum planData);
         VagtPlan GetById(int id);
         VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description);
+        void UpdateInfoForVagtPlan(int id, TimeSpan startTime, TimeSpan endTime);
     }
 }

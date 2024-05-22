@@ -29,6 +29,7 @@ namespace EksamenSem2.Pages.Kalender
         }
         public void OnGet()
         {
+
             PlanDatas = _vagtPlanDataService.GetPlanDataWithIncludes();
         }
 
@@ -58,6 +59,22 @@ namespace EksamenSem2.Pages.Kalender
             }
 
             return Page();
+        }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+            foreach (VagtPlan vp in context.VagtPlans) //Sletter VagtPlan før selve dataen
+            {
+                if (vp.PlanId == id)
+                {
+                    context.VagtPlans.Remove(vp);
+                }
+            }
+            context.SaveChanges();
+            _vagtPlanDataService.Delete(VagtPlan.Id);
+            return RedirectToPage();
         }
     }
 }

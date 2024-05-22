@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+
 namespace EksamenSem2.Pages
 {
     public class GetAllMedarbejdererModel : PageModel
@@ -25,7 +26,9 @@ namespace EksamenSem2.Pages
 
         public IActionResult OnPostNameSearch()
         {
-            //Medarbejder= _medarbejderService.ReadByName(SearchString);
+           
+       
+
             return Page();
         }
 
@@ -33,7 +36,6 @@ namespace EksamenSem2.Pages
         public void OnGet()
         {
             Medarbejder = _medarbejderService.GetAll();
-
             if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
             {
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

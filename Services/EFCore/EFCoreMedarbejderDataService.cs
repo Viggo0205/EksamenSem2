@@ -8,24 +8,12 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
 
 
 
-    public Medarbejder? ReadByName(string name)
+    public List<Medarbejder?> ReadByName(string navn)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
 
-        return GetAllWithIncludes(context).FirstOrDefault(x => x.Navn == name);
+        return GetAllWithIncludes(context).Where(x => x.Navn.Contains(navn)).ToList();
     }
-
-    //public Medarbejder? RemoveById(int id)
-    //{
-    //    using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
-
-    //    Medarbejder? ansat = context.Set<Medarbejder>().Find(x => x.Id == id);
-    //    if (ansat = null)
-    //        return false;   
-
-    //    context.Set<Medarbejder>().Remove(ansat);
-    //    return (context.SaveChanges() > 0);
-    //}
 
 
         public Medarbejder? VerifyUser(string providedUserName, string providedPassword)
