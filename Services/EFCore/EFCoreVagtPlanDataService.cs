@@ -35,12 +35,6 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         return context.VagtPlans.Find(id);
     }
 
-    public void SaveChanges()
-    {
-        using var context = new auden_dk_db_eksamenContext();
-        context.SaveChanges();
-    }
-
     public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
     {
         using var context = new auden_dk_db_eksamenContext();

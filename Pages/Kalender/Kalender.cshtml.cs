@@ -72,7 +72,7 @@ namespace EksamenSem2.Pages.Kalender
             if (vagtPlan != null)
             {
                 _vagtPlanDataService.RegisterOverTime(vagtPlan, Overtid, Beskrivelse);
-                _vagtPlanDataService.SaveChanges();
+                
             }
             LoadWeeklyPlanData();
             return Page();
