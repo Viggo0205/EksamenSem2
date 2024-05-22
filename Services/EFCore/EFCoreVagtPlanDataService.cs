@@ -72,20 +72,37 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         {
             vagtPlanToUpdate.Overtid = time;
             vagtPlanToUpdate.Beskrivelse = description;
+            vagtPlanToUpdate.Godekente = false;
             context.SaveChanges();
         }
         return vagtPlanToUpdate;
     }
-
-    public void SaveChanges()
+    public VagtPlan GodeKendeOverArbejde(int vagtPlanId)
     {
-        throw new NotImplementedException();
+        using var context = new auden_dk_db_eksamenContext();
+        var vagtPlanToUpdate = context.VagtPlans.Find(vagtPlanId);
+        if (vagtPlanToUpdate != null)
+        {
+            vagtPlanToUpdate.Godekente = true;
+            context.SaveChanges();
+        }
+        return vagtPlanToUpdate;
+    }
+    public VagtPlan ForKasteOverArbejde(int id)
+    {
+        using var context = new auden_dk_db_eksamenContext();
+        var vagtPlan = context.VagtPlans.Find(id);
+        if (vagtPlan != null)
+        {
+            vagtPlan.Overtid = null;
+            vagtPlan.Beskrivelse = null;
+            vagtPlan.Godekente = false;
+            context.SaveChanges();
+        }
+        return vagtPlan;
     }
 }
-    
-
-
-
-   
-
-
+    //public void SaveChanges()
+    //{
+    //    throw new NotImplementedException();
+    //}

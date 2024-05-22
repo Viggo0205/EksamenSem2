@@ -97,8 +97,11 @@ namespace EksamenSem2.Pages.Kalender
             {
                 foreach (var vagtPlan in plan.VagtPlans)
                 {
-                    // Sum up overtime
-                    TotalOvertid += vagtPlan.Overtid ?? 0;
+                    // Sum up approved overtime
+                    if (vagtPlan.Godekente == true)
+                    {
+                        TotalOvertid += vagtPlan.Overtid ?? 0;
+                    }
 
                     // Calculate the total planned time in hours considering multi-day spans
                     var startTime = vagtPlan.Plan.StartTid.Value;
@@ -115,8 +118,8 @@ namespace EksamenSem2.Pages.Kalender
                         plannedTime = (endTime - startTime).TotalHours + 24;
                     }
                     plannedTime = Math.Round(plannedTime);
-                    // Sum up total time including overtime
-                    TotalTimeWithOvertid += plannedTime + (vagtPlan.Overtid ?? 0);
+                    // Sum up total time including approved overtime
+                    TotalTimeWithOvertid += plannedTime + (vagtPlan.Godekente == true ? vagtPlan.Overtid ?? 0 : 0);
                 }
             }
         }
