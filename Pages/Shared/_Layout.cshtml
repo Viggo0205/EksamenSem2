@@ -41,7 +41,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
                         </li>
                         @{
-                            // viser kun hvis medarbejder er logget in som admin.
+                            // viser kun hvis medarbejder er logget ind som admin.
                             if (Context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value == "admin")
                             {
                                 <li class="nav-item">
