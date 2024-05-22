@@ -48,7 +48,6 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         context.PlanData.Update(planDatum);
         context.SaveChanges();
     }
-}
     public void SaveChanges()
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
@@ -65,9 +64,6 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
 
         return base.Delete(id);
     }
-
-
-
     public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)
     {
         using var context = new auden_dk_db_eksamenContext();
@@ -81,3 +77,10 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         return vagtPlanToUpdate;
     }
 }
+    
+
+
+
+   
+
+
