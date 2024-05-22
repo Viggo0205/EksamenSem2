@@ -48,7 +48,7 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         context.PlanData.Update(planDatum);
         context.SaveChanges();
     }
-    public void SaveChanges()
+    public override bool Delete(int id)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
 
@@ -75,6 +75,11 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
             context.SaveChanges();
         }
         return vagtPlanToUpdate;
+    }
+
+    public void SaveChanges()
+    {
+        throw new NotImplementedException();
     }
 }
     

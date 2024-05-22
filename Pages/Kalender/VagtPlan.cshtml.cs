@@ -75,7 +75,6 @@ namespace EksamenSem2.Pages.Kalender
             context.SaveChanges();
             _vagtPlanDataService.Delete(VagtPlan.Id);
             return RedirectToPage();
-
         }
     }
 }
