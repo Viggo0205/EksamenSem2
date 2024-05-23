@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <None Include="efpt.config.json.user" />
+    <None Include="wwwroot\lib\images\bg.jpg" />
   </ItemGroup>
 
   <ItemGroup>

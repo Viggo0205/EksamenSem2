@@ -5,10 +5,8 @@
 @model EksamenSem2.Pages.GetAllMedarbejdererModel
 @{
 }
-
-
 <h1 class="display-3 mb-5">Medarbejdere</h1>
-<div class="container">
+
     <div class="search-container">
         <form class="form-inline" method="post" asp-page-handler="NameSearch">
             <div class="input-group">
@@ -49,10 +47,3 @@
             </div>
         }
     </div>
-
-<p>
-    <a class="btn btn-outline-primary mt-3" asp-page="TilføjMedarbejder"> Tilføj Medarbejder </a>
-</p>
-<p>
-    <a class="btn btn-outline-primary mt-3" asp-page="FjernMedarbejder"> Fjern Medarbejder </a>
-</p>
