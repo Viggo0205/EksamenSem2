@@ -677,3 +677,8 @@ body {
     text-align: left;
     background-color: #fff;
 }
+.bg {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}

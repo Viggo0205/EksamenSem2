@@ -12,10 +12,11 @@
 
   <ItemGroup>
     <None Include="efpt.config.json.user" />
-    <None Include="images\.DS_Store" />
     <None Include="js\.DS_Store" />
     <None Include="scss\.DS_Store" />
     <None Include="scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\css\bg.jpg" />
+    <None Include="wwwroot\css\lgo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
