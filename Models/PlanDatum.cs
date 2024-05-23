@@ -15,8 +15,8 @@ public partial class PlanDatum
     public int PlanId { get; set; }
 
     [Column(TypeName = "date")]
-    public DateTime? Dato { get; set; }
-
+    public DateTime? StartDato { get; set; }
+    public DateTime? SlutDato { get; set; }
     public TimeSpan? StartTid { get; set; }
 
     public TimeSpan? SlutTid { get; set; }

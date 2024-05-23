@@ -36,7 +36,7 @@
                 <td>
                     @{
                         var date = Model.StartOfWeek.AddDays((int)day);
-                        var plans = Model.WeeklyPlanData.Where(p => p.Dato == date).ToList();
+                        var plans = Model.WeeklyPlanData.Where(p => p.StartDato == date).ToList();
                     }
                     <strong>@date.ToShortDateString()</strong>
                     <ul>

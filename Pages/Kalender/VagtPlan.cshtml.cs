@@ -51,7 +51,7 @@ namespace EksamenSem2.Pages.Kalender
             {
                 ModelState.AddModelError("EndTime", "slut tid can ikke være det samme som start tid");
             }
-            if (EndTime > DateTime.Today.AddDays(2))
+            if (EndTime > StartTime.Date.AddDays(2))
             {
                 ModelState.AddModelError("EndTime", "en arbejds dage kan ikke være lenger end 1 dages tid");
             }
@@ -60,7 +60,8 @@ namespace EksamenSem2.Pages.Kalender
             {
                 var planData = new PlanDatum
                 {
-                    Dato = StartTime.Date,
+                    StartDato = StartTime.Date,
+                    SlutDato = EndTime.Date,
                     StartTid = StartTime.TimeOfDay,
                     SlutTid = EndTime.TimeOfDay,
                     //Beskrivelse = "Scheduled shift"
@@ -84,17 +85,6 @@ namespace EksamenSem2.Pages.Kalender
 
         public IActionResult OnPostDelete(int id)
         {
-            using var context = new auden_dk_db_eksamenContext();
-
-            foreach (var vp in context.VagtPlans)
-            {
-                if (vp.PlanId == id)
-                {
-                    context.VagtPlans.Remove(vp);
-                }
-            }
-
-            context.SaveChanges();
             _vagtPlanDataService.Delete(VagtPlan.Id);
             return RedirectToPage();
         }

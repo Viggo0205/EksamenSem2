@@ -79,7 +79,7 @@ public partial class auden_dk_db_eksamenContext : DbContext
                 .HasConstraintName("FK__VagtPlan__Medarb__02FC7413");
 
             entity.HasOne(d => d.Plan).WithMany(p => p.VagtPlans)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__VagtPlan__PlanId__03F0984C");
         });
 
