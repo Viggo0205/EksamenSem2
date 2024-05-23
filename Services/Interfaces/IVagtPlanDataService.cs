@@ -8,8 +8,10 @@ namespace EksamenSem2.Services.Interfaces
         List<PlanDatum> GetPlanDataWithIncludes();
         void AddPlanData(PlanDatum planData);
         VagtPlan GetById(int id);
-        void SaveChanges();
         VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description);
+        VagtPlan GodeKendeOverArbejde(int vagtPlanId);
+        VagtPlan ForKasteOverArbejde(int vagtPlanId);
+        
         void UpdateInfoForVagtPlan(int id, TimeSpan startTime, TimeSpan endTime);
     }
 }

@@ -22,6 +22,7 @@ public partial class VagtPlan
 
     [Column(TypeName = "text")]
     public string Beskrivelse { get; set; }
+    public bool? Godekente { get; set; }
 
     [ForeignKey("MedarbejderId")]
     [InverseProperty("VagtPlans")]

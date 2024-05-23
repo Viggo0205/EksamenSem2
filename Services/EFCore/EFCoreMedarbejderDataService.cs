@@ -74,5 +74,15 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
         context.Set<Medarbejder>().Update(medarbejder);
         context.SaveChanges();
     }
+
+	public void ForgotPassword(int id, string password)
+	{
+		using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+		Medarbejder medarbejder = Read(id);
+		medarbejder.Password = password;
+		context.Set<Medarbejder>().Update(medarbejder);
+		context.SaveChanges();
+	}
 }
 
