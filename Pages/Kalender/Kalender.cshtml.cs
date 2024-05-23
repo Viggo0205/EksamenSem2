@@ -7,15 +7,21 @@ using System.Collections.Generic;
 using System.Linq;
 using EksamenSem2.Pages.Helpers;
 using EksamenSem2.Pages.Login;
+using System.Runtime.CompilerServices;
 
 namespace EksamenSem2.Pages.Kalender
 {
     public class KalenderModel : PageModel
     {
         private readonly IVagtPlanDataService _vagtPlanDataService;
-
+        public static DateTime ThisWeek {  get; set; } = DateTime.Now;
         [TempData]
-        public DateTime StartOfWeek { get; set; }
+        public DateTime StartOfWeek
+        {
+            get { return ThisWeek; }
+            set { ThisWeek = value; }
+        }
+
 
         public List<PlanDatum> WeeklyPlanData { get; set; }
 

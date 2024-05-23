@@ -31,11 +31,11 @@
                     {
                         <form method="post" asp-page-handler="Approve">
                             <input type="hidden" name="VagtPlanId" value="@vagtPlan.Id" />
-                            <button type="submit" class="btn btn-primary">Approve</button>
+                            <button type="submit" class="btn btn-primary">Godkend</button>
                         </form>
                         <form method="post" asp-page-handler="Disapprove">
                             <input type="hidden" name="VagtPlanId" value="@vagtPlan.Id" />
-                            <button type="submit" class="btn btn-danger">Disapprove</button>
+                            <button type="submit" class="btn btn-danger">Afvis</button>
                         </form>
                     }
                 </td>
