@@ -10,7 +10,8 @@ namespace EksamenSem2.Services.Interfaces
         /// <returns>User matching the provided information, otherwise null.</returns>
         /// 
         Medarbejder? VerifyUser(string providedEmail, string providedPassword);
-        void UpdateInfoForMedarbejder(int id, string navn, string password);
+        void UpdateInfoForMedarbejder(int id, string navn, string password, int? tlfNr);
+        void ForgotPassword(int id, string password);
         List<Medarbejder?> ReadByName(string navn);
     }
 }

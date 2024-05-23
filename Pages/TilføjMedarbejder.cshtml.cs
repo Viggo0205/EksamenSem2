@@ -19,8 +19,7 @@ public class TilføjMedarbejderModel : PageModel
 
     [BindProperty]
     public int[] SelectedKompetence {  get; set; }
-    public SelectList Kompetencer { get; set; }
-    public List<Skema> Vagtplan { get; set; }
+    public SelectList Kompetencer { get; set; }    
     public string Password { get; set; }
     public SelectList SelectedRolle { get; set; }
     [BindProperty]
@@ -48,7 +47,7 @@ public class TilføjMedarbejderModel : PageModel
     {
     }
 
-        public IActionResult Onpost()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {

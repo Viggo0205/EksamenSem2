@@ -1,14 +1,21 @@
 ﻿
 using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
 public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, IMedabejderDataService
 {
+    protected override IQueryable<Medarbejder> GetAllWithIncludes(auden_dk_db_eksamenContext context)
+    {
+        return context.Set<Medarbejder>()
+            .Include(vp => vp.MedarbejderKompetences)
+            .ThenInclude(vp => vp.Kompetence);
+    }
 
 
 
-    public List<Medarbejder?> ReadByName(string navn)
+    public List<Medarbejder>? ReadByName(string navn)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
 
@@ -25,6 +32,7 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
 
             return medarbejder;
         }
+
 
     public Medarbejder? VerifyUser()
     {
@@ -49,21 +57,33 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
             {
                 context.VagtPlans.Remove(mk);
             }
+
         }
         context.SaveChanges();
 
         return base.Delete(id);
     }
 
-    public void UpdateInfoForMedarbejder(int id, string navn, string password)
+    public void UpdateInfoForMedarbejder(int id, string navn, string password, int? tlfNr)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
 
         Medarbejder medarbejder = Read(id);
         medarbejder.Navn = navn;
         medarbejder.Password = password;
+        medarbejder.TlfNr = tlfNr;
         context.Set<Medarbejder>().Update(medarbejder);
         context.SaveChanges();
     }
+
+	public void ForgotPassword(int id, string password)
+	{
+		using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
+
+		Medarbejder medarbejder = Read(id);
+		medarbejder.Password = password;
+		context.Set<Medarbejder>().Update(medarbejder);
+		context.SaveChanges();
+	}
 }
 

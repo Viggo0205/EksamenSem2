@@ -7,15 +7,21 @@ using System.Collections.Generic;
 using System.Linq;
 using EksamenSem2.Pages.Helpers;
 using EksamenSem2.Pages.Login;
+using System.Runtime.CompilerServices;
 
 namespace EksamenSem2.Pages.Kalender
 {
     public class KalenderModel : PageModel
     {
         private readonly IVagtPlanDataService _vagtPlanDataService;
-
+        public static DateTime ThisWeek {  get; set; } = DateTime.Now;
         [TempData]
-        public DateTime StartOfWeek { get; set; }
+        public DateTime StartOfWeek
+        {
+            get { return ThisWeek; }
+            set { ThisWeek = value; }
+        }
+
 
         public List<PlanDatum> WeeklyPlanData { get; set; }
 
@@ -97,8 +103,11 @@ namespace EksamenSem2.Pages.Kalender
             {
                 foreach (var vagtPlan in plan.VagtPlans)
                 {
-                    // Sum up overtime
-                    TotalOvertid += vagtPlan.Overtid ?? 0;
+                    // Sum up approved overtime
+                    if (vagtPlan.Godekente == true)
+                    {
+                        TotalOvertid += vagtPlan.Overtid ?? 0;
+                    }
 
                     // Calculate the total planned time in hours considering multi-day spans
                     var startTime = vagtPlan.Plan.StartTid.Value;
@@ -115,8 +124,8 @@ namespace EksamenSem2.Pages.Kalender
                         plannedTime = (endTime - startTime).TotalHours + 24;
                     }
                     plannedTime = Math.Round(plannedTime);
-                    // Sum up total time including overtime
-                    TotalTimeWithOvertid += plannedTime + (vagtPlan.Overtid ?? 0);
+                    // Sum up total time including approved overtime
+                    TotalTimeWithOvertid += plannedTime + (vagtPlan.Godekente == true ? vagtPlan.Overtid ?? 0 : 0);
                 }
             }
         }

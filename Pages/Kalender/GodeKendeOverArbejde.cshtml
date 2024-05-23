@@ -1,0 +1,45 @@
+﻿@page
+@model EksamenSem2.Pages.Kalender.GodeKendeOverArbejdeModel
+@{
+    ViewData["Title"] = "Godekente Overarbejde";
+}
+
+<h2>Godekente Overarbejde</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Medarbejder</th>
+            <th>Plan</th>
+            <th>Overtid</th>
+            <th>Beskrivelse</th>
+            <th>Godekente</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vagtPlan in Model.VagtPlans)
+        {
+            <tr>
+                <td>@vagtPlan.MedarbejderId</td>
+                <td>@vagtPlan.PlanId</td>
+                <td>@vagtPlan.Overtid</td>
+                <td>@vagtPlan.Beskrivelse</td>
+                <td>@vagtPlan.Godekente</td>
+                <td>
+                    @if (vagtPlan.Godekente == false)
+                    {
+                        <form method="post" asp-page-handler="Approve">
+                            <input type="hidden" name="VagtPlanId" value="@vagtPlan.Id" />
+                            <button type="submit" class="btn btn-primary">Godkend</button>
+                        </form>
+                        <form method="post" asp-page-handler="Disapprove">
+                            <input type="hidden" name="VagtPlanId" value="@vagtPlan.Id" />
+                            <button type="submit" class="btn btn-danger">Afvis</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

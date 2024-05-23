@@ -13,6 +13,8 @@ namespace EksamenSem2.Pages
         public string Navn { get; set; }
         [BindProperty]
         public string Password {  get; set; }
+        [BindProperty]
+        public int? TlfNr { get; set;}
 
         private IMedabejderDataService _medarbejderDataService;
 
@@ -26,13 +28,13 @@ namespace EksamenSem2.Pages
             Medarbejder m = _medarbejderDataService.Read(LogInPageModel.LoggedInMedarbejder.Id);
             Navn = m.Navn;
             Password = m.Password;
-
+            TlfNr = m.TlfNr;
 
         }
 
         public IActionResult OnPost()
         {
-            _medarbejderDataService.UpdateInfoForMedarbejder(LogInPageModel.LoggedInMedarbejder.Id, Navn, Password);
+            _medarbejderDataService.UpdateInfoForMedarbejder(LogInPageModel.LoggedInMedarbejder.Id, Navn, Password, TlfNr);
             return RedirectToPage("/Index");
         }
 

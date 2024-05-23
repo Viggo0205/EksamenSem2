@@ -30,12 +30,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Kalender/Kalender">Kalender</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/UpdateInfoForMedarbejder">Opdater Info</a>
-                        </li>
+                        
                         
                         @{
                             // viser kun hvis medarbejder er logget ind som admin.
@@ -50,6 +45,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-page="/Kalender/VagtPlan">Vagtplan</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Kalender/GodeKendeOverArbejde">Vurder Overarbejde</a>
+                                </li>
                             }
                         }
                      
@@ -63,12 +61,21 @@
                             }
                             else // hvis nogen er logget ind -> hvis medarbejds email og  "Log out"
                             {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Kalender/Kalender">Kalender</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/UpdateInfoForMedarbejder">Opdater Info</a>
+                                </li>
                                 <li class="nav-item nav-link text-dark me-3">
                                     <span>Medarbejder:</span> <span><b>@LogInPageModel.LoggedInMedarbejder.Email</b></span>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="btn btn-primary" asp-area="" asp-page="/LogIn/LogOut">Log out</a>
                                 </li>
+                              
+
                             }
                         }
 
@@ -91,6 +98,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -9,7 +9,7 @@
 <form method="post">
     <div>
         <label asp-for="VagtPlan.MedarbejderId">Medarbejder ID:</label>
-        <select asp-items = "@Model.Emails" asp-for="VagtPlan.MedarbejderId" class = "form-control"></select>
+        <select asp-items="@Model.Emails" asp-for="VagtPlan.MedarbejderId" class="form-control"></select>
         <span asp-validation-for="VagtPlan.MedarbejderId" class="text-danger"></span>
     </div>
     <div>
@@ -33,8 +33,6 @@
             <th>Medarbejder Navn</th>
             <th>Start Time</th>
             <th>End Time</th>
-            
-            
         </tr>
     </thead>
     <tbody>
@@ -47,13 +45,11 @@
                 <td>@item.Dato @item.SlutTid</td>
                 <td>
                     <form method="post" asp-page-handler="Delete">
-                        <input type="hidden" name="id" value="@item.VagtPlans.FirstOrDefault()?.Id"/>
+                        <input type="hidden" name="id" value="@item.VagtPlans.FirstOrDefault()?.Id" />
                         <button type="submit">Slet VagtPlan</button>
                     </form>
                 </td>
-
                 <td><a class="btn btn-outline-primary btn-sm" type="button" title="Edit" asp-page="UpdateVagtplan" asp-route-id="@item.PlanId"><i class="fa fa-edit"></i>Opdater</a></td>
-                
             </tr>
         }
     </tbody>

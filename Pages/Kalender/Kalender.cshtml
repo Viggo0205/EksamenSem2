@@ -93,6 +93,9 @@
                 $('#VagtPlanId').val(vagtId);
                 $('#editVagtModal').modal('show');
             });
+            $('#editVagtModal .close, #editVagtModal .btn-secondary').click(function () {
+                $('#editVagtModal').modal('hide');
+            });
         });
     </script>
 }
