@@ -13,7 +13,5 @@ namespace EksamenSem2.Services.Interfaces
         void UpdateInfoForMedarbejder(int id, string navn, string password);
         void ForgotPassword(int id, string password);
         List<Medarbejder?> ReadByName(string navn);
-        List<Medarbejder>? ReadByName(string navn);
-       
     }
 }
