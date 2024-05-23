@@ -64,13 +64,14 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
         return base.Delete(id);
     }
 
-    public void UpdateInfoForMedarbejder(int id, string navn, string password)
+    public void UpdateInfoForMedarbejder(int id, string navn, string password, int? tlfNr)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
 
         Medarbejder medarbejder = Read(id);
         medarbejder.Navn = navn;
         medarbejder.Password = password;
+        medarbejder.TlfNr = tlfNr;
         context.Set<Medarbejder>().Update(medarbejder);
         context.SaveChanges();
     }
