@@ -23,7 +23,8 @@ public partial class Medarbejder : IHasId
         Password = password;
         MedarbejderKompetences = (ICollection<MedarbejderKompetence>)kompetences;
         Timeløn = timeløn;
-    }
 
+}
+   
     //public int Id { get; set; }
 }

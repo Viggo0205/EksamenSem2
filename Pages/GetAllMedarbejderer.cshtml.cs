@@ -24,10 +24,19 @@ namespace EksamenSem2.Pages
             _medarbejderService = medabejderDataService;
         }
 
+       
+
         public IActionResult OnPostNameSearch()
         {
-           
-       
+            // tjekker om user inputtet at den ikke er null eller tom
+            if (!string.IsNullOrEmpty(SearchString)) 
+            {
+                Medarbejder = _medarbejderService.ReadByName(SearchString);  // anvender metoden fra service klassen
+            }
+               else
+            {
+                Medarbejder = _medarbejderService.GetAll();
+            }
 
             return Page();
         }
@@ -36,7 +45,7 @@ namespace EksamenSem2.Pages
         public void OnGet()
         {
             Medarbejder = _medarbejderService.GetAll();
-            if (LogInPageModel.LoggedInMedarbejder == null) // Force Signout on startup
+            if (LogInPageModel.LoggedInMedarbejder == null) // tvinges Signout når man starter up
             {
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             }
