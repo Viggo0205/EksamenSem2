@@ -41,8 +41,8 @@
             <tr>
                 <td>@item.VagtPlans.FirstOrDefault()?.MedarbejderId</td>
                 <td>@item.VagtPlans.FirstOrDefault()?.Medarbejder.Navn</td>
-                <td>@item.Dato @item.StartTid</td>
-                <td>@item.Dato @item.SlutTid</td>
+                <td>@item.Dato?.ToShortDateString() @item.StartTid</td>
+                <td>@item.Dato?.ToShortDateString() @item.SlutTid</td>
                 <td>
                     <form method="post" asp-page-handler="Delete">
                         <input type="hidden" name="id" value="@item.VagtPlans.FirstOrDefault()?.Id" />

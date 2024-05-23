@@ -38,6 +38,24 @@ namespace EksamenSem2.Pages.Kalender
 
         public IActionResult OnPost()
         {
+            if (StartTime < DateTime.Today)
+            {
+                ModelState.AddModelError("StartTime", "Start tid can ikke være tidliger end idag.");
+            }
+
+            if (EndTime < StartTime)
+            {
+                ModelState.AddModelError("EndTime", "slut tid can ikke være før start tid");
+            }
+            if (EndTime == StartTime)
+            {
+                ModelState.AddModelError("EndTime", "slut tid can ikke være det samme som start tid");
+            }
+            if (EndTime > DateTime.Today.AddDays(2))
+            {
+                ModelState.AddModelError("EndTime", "en arbejds dage kan ikke være lenger end 1 dages tid");
+            }
+
             if (ModelState.IsValid)
             {
                 var planData = new PlanDatum
@@ -60,7 +78,7 @@ namespace EksamenSem2.Pages.Kalender
 
                 return RedirectToPage();
             }
-
+            PlanDatas = _vagtPlanDataService.GetPlanDataWithIncludes(); // Ensure PlanDatas is reloaded if ModelState is invalid
             return Page();
         }
 
