@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,14 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <Content Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
+    <Content Include="Pages\Login\bg.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="efpt.config.json.user" />
+    <None Include="js\.DS_Store" />
+    <None Include="scss\.DS_Store" />
+    <None Include="scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\css\bg.jpg" />
+    <None Include="wwwroot\css\lgo.jpg" />
   </ItemGroup>
 
   <ItemGroup>

@@ -23,12 +23,14 @@ public partial class Medarbejder
     public int? RolleId { get; set; }
 
     [StringLength(255)]
+    [RegularExpression("^[a-åA-Å ']", ErrorMessage = "Kun bogstaver er tilladt")]
     public string Navn { get; set; }
 
     [StringLength(255)]
     [Unicode(false)]
     public string Email { get; set; }
 
+    [Range(10000000, 99999999, ErrorMessage ="Dit telefon nummer skal være 8 cifre")]
     public int? TlfNr { get; set; }
 
     [StringLength(255)]
