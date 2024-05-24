@@ -51,17 +51,13 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
     public override bool Delete(int id)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();
-
-        foreach (PlanDatum pd in context.PlanData) //Sletter data for en vagtplan
+        var vagtPlan = context.VagtPlans.FirstOrDefault(vp => vp.Id == id);
+        var planDataToRemove = context.PlanData.Where(pd => pd.PlanId == vagtPlan.PlanId).ToList();
+        foreach (var pd in planDataToRemove)
         {
-            if (pd.PlanId == id)
-            {
-                context.PlanData.Remove(pd);
-            }
+            context.PlanData.Remove(pd);
         }
-
         context.SaveChanges();
-
         return base.Delete(id);
     }
     public VagtPlan RegisterOverTime(VagtPlan vagtPlan, double time, string description)

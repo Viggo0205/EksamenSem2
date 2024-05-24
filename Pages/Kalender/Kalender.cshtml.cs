@@ -88,7 +88,7 @@ namespace EksamenSem2.Pages.Kalender
         {
             DateTime endOfWeek = StartOfWeek.AddDays(7);
             WeeklyPlanData = _vagtPlanDataService.GetPlanDataWithIncludes()
-                .Where(p => p.Dato >= StartOfWeek && p.Dato < endOfWeek && p.VagtPlans.Select(vp => vp.MedarbejderId).Contains(LogInPageModel.LoggedInMedarbejder.Id))
+                .Where(p => p.StartDato >= StartOfWeek && p.SlutDato < endOfWeek && p.VagtPlans.Select(vp => vp.MedarbejderId).Contains(LogInPageModel.LoggedInMedarbejder.Id))
                 .ToList();
 
             CalculateTotalTimes();
