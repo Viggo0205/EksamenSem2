@@ -98,7 +98,4 @@ public class EFCoreVagtPlanDataService : EFCoreDataServiceBase<VagtPlan>, IVagtP
         return vagtPlan;
     }
 }
-    //public void SaveChanges()
-    //{
-    //    throw new NotImplementedException();
-    //}
+

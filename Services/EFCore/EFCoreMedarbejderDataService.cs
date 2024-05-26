@@ -33,12 +33,6 @@ public class EFCoreMedarbejderDataService : EFCoreDataServiceBase<Medarbejder>, 
             return medarbejder;
         }
 
-
-    public Medarbejder? VerifyUser()
-    {
-        throw new NotImplementedException();
-    }
-
      public override bool Delete(int id)
     {
         using auden_dk_db_eksamenContext context = new auden_dk_db_eksamenContext();

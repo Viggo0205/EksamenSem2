@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Include="Pages\Login\bg.jpg" />
+    <Content Include="SQLQuery1.sql" />
   </ItemGroup>
 
   <ItemGroup>
