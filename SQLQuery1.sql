@@ -4,6 +4,12 @@
     [Beskrivelse] VARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+CREATE TABLE [dbo].[Rolle] (
+    [Id]          INT           IDENTITY (1, 1) NOT NULL,
+    [Navn]        VARCHAR (255) NULL,
+    [Rettigheder] VARCHAR (255) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
 CREATE TABLE [dbo].[Medarbejder] (
     [Id]          INT            IDENTITY (1, 1) NOT NULL,
     [Løn]         FLOAT (53)     NULL,
@@ -33,12 +39,7 @@ CREATE TABLE [dbo].[PlanData] (
     [TotalTimer] INT      NULL,
     PRIMARY KEY CLUSTERED ([Plan_id] ASC)
 );
-CREATE TABLE [dbo].[Rolle] (
-    [Id]          INT           IDENTITY (1, 1) NOT NULL,
-    [Navn]        VARCHAR (255) NULL,
-    [Rettigheder] VARCHAR (255) NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
+
 CREATE TABLE [dbo].[VagtPlan] (
     [Id]            INT        IDENTITY (1, 1) NOT NULL,
     [MedarbejderId] INT        NOT NULL,
@@ -50,3 +51,11 @@ CREATE TABLE [dbo].[VagtPlan] (
     FOREIGN KEY ([MedarbejderId]) REFERENCES [dbo].[Medarbejder] ([Id]),
     FOREIGN KEY ([PlanId]) REFERENCES [dbo].[PlanData] ([Plan_id])
 );
+INSERT INTO [dbo].[Rolle] (Navn, Rettigheder) VALUES ('Admin', 'Admin');
+INSERT INTO [dbo].[Rolle] (Navn, Rettigheder) VALUES ('Medarbejder', 'Medarbejder');
+
+INSERT INTO [dbo].[Kompetence] (Navn, Beskrivelse) VALUES ('Røgdykker', 'God til at dykke i røg');
+INSERT INTO [dbo].[Kompetence] (Navn, Beskrivelse) VALUES ('Indsatsleder', 'Ledelse');
+
+INSERT INTO [dbo].[Medarbejder] (Løn, Timeløn, Beskrivelse, RolleId, Navn, Email, TlfNr, Password) 
+VALUES (50000, 200, 'Medarbejder Beskrivelse', 1, 'John Doe', 'john.doe@example.com', 12345678, 'password123');
