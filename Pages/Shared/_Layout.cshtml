@@ -28,13 +28,10 @@
                         
                         @{
                             // viser kun hvis medarbejder er logget ind som admin.
-                            if (Context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value == "admin")
+                            if (LogInPageModel.LoggedInMedarbejder?.RolleId == 1)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/TilføjMedarbejder">Tilføj Medarbejder</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-page="/Kalender/VagtPlan">Vagtplan</a>
@@ -44,8 +41,15 @@
                                 </li>
                             }
                         }
-                     
-                    
+                        @{
+                            // hvis siden skal tilgåes både admin og medarbejder
+                            if (LogInPageModel.LoggedInMedarbejder?.RolleId == 1 || LogInPageModel.LoggedInMedarbejder?.RolleId == 2)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/GetAllMedarbejderer">Alle Medarbejdere</a>
+                                </li>
+                            }
+                        }
                         @{
                             if (LogInPageModel.LoggedInMedarbejder == null) // hvis der ikke er nogen logget in hvis log ind
                             {
@@ -72,6 +76,7 @@
 
                             }
                         }
+                      
 
                     </ul>
                 </div>

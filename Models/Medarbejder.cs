@@ -38,7 +38,7 @@ public partial class Medarbejder
     [StringLength(255)]
     [Unicode(false)]
     [Required]
-    [RegularExpression(@"^(?=.[a-z])(?=.[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Passwordet skal indeholde både store og små bogstaver samt tal, og være mindst 8 tegn langt.")]
+    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Passwordet skal indeholde både store og små bogstaver samt tal, og være mindst 8 tegn langt.")]
     public string Password { get; set; }
 
     [InverseProperty("Medarbejder")]
