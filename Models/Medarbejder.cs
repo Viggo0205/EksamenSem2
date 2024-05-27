@@ -28,6 +28,8 @@ public partial class Medarbejder
 
     [StringLength(255)]
     [Unicode(false)]
+    [Required]
+    [RegularExpression(@"^[^@\s]+@[^@\s]+.[^@\s]+$", ErrorMessage = "Indtast en gyldig emailadresse.")]
     public string Email { get; set; }
 
     [Range(10000000, 99999999, ErrorMessage ="Dit telefon nummer skal være 8 cifre")]
@@ -35,6 +37,8 @@ public partial class Medarbejder
 
     [StringLength(255)]
     [Unicode(false)]
+    [Required]
+    [RegularExpression(@"^(?=.[a-z])(?=.[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Passwordet skal indeholde både store og små bogstaver samt tal, og være mindst 8 tegn langt.")]
     public string Password { get; set; }
 
     [InverseProperty("Medarbejder")]
