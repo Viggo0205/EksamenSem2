@@ -80,7 +80,7 @@ namespace EksamenSem2.Pages.Kalender
                 _vagtPlanDataService.RegisterOverTime(vagtPlan, Overtid, Beskrivelse);
                 
             }
-            LoadWeeklyPlanData();
+            LoadWeeklyPlanData();   
             return Page();
         }
 
