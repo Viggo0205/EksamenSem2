@@ -1,7 +1,9 @@
 using EksamenSem2.Pages.Login;
 using EksamenSem2.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace EksamenSem2.Pages
 {
@@ -26,6 +28,7 @@ namespace EksamenSem2.Pages
 
 		public IActionResult OnPost()
 		{
+           
             Medarbejder = _medarbejderDataService.GetAll();
 			int id = 0;
             for(int i = 0; i < Medarbejder.Count; i++)
@@ -36,6 +39,7 @@ namespace EksamenSem2.Pages
                 }
             }
             _medarbejderDataService.ForgotPassword(id, Password);
+
 			return RedirectToPage("/Index");
 		}
 	}
