@@ -23,7 +23,7 @@ public partial class Medarbejder
     public int? RolleId { get; set; }
 
     [StringLength(255)]
-    [RegularExpression("^[a-åA-Å ']", ErrorMessage = "Kun bogstaver er tilladt")]
+    //[RegularExpression("^[\"^[a-zA-Z]+$\"']", ErrorMessage = "Kun bogstaver er tilladt")]
     public string Navn { get; set; }
 
     [StringLength(255)]
