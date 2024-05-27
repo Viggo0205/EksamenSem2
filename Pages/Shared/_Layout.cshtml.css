@@ -6,13 +6,6 @@ for details on configuring this project to bundle and minify static web assets. 
     border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color: #ff0000;
-    color: #ff0000;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
@@ -42,22 +35,19 @@ button.accept-policy {
 .logo {
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 10px;
-    left: 55px;
+    position: static;
 }
 nav {
     background: #ff0000;
-    padding: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    padding: 3px;
 }
 
     nav ul li {
         display: inline-block;
         list-style: none;
-        font-size: 20px;
-        padding: 0 10px;
-        margin: 0 20px;
+        font-size: 17px;
+        padding: 8px;
+        margin: 10px;
         cursor: pointer;
         position: relative;
     }
@@ -76,3 +66,7 @@ nav {
         nav ul li:hover::after {
             width: 100%;
         }
+
+.footer{
+   margin: auto;
+}

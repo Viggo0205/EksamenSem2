@@ -15,7 +15,7 @@
     <None Include="js\.DS_Store" />
     <None Include="scss\.DS_Store" />
     <None Include="scss\bootstrap\.DS_Store" />
-    <None Include="wwwroot\css\bg.jpg" />
+    <None Include="wwwroot\lib\bg.jpg" />
     <None Include="wwwroot\css\lgo.jpg" />
   </ItemGroup>
 
