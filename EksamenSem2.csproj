@@ -7,14 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <Content Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
+    <Content Include="Pages\Login\bg.jpg" />
+    <Content Include="SQLQuery1.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="efpt.config.json.user" />
+    <None Include="js\.DS_Store" />
+    <None Include="scss\.DS_Store" />
+    <None Include="scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\lib\bg.jpg" />
+    <None Include="wwwroot\css\lgo.jpg" />
   </ItemGroup>
 
   <ItemGroup>

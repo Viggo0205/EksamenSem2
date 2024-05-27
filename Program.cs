@@ -16,9 +16,7 @@ builder.Services.AddDbContext<auden_dk_db_eksamenContext>(options =>
 
 builder.Services.AddRazorPages(options =>
 {
-    // Add authorization options
-    //options.Conventions.AuthorizeFolder("/Kalender");
-   // options.Conventions.AuthorizeFolder("/Skema");
+    options.Conventions.AuthorizeFolder("/Kalender");
     options.Conventions.AuthorizePage("/GetAllMedarbejderer");
     options.Conventions.AuthorizePage("/TilføjMedarbejder");
 });
