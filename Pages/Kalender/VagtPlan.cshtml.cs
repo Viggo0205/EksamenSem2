@@ -1,3 +1,4 @@
+//jonas
 using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +65,7 @@ namespace EksamenSem2.Pages.Kalender
                     SlutDato = EndTime.Date,
                     StartTid = StartTime.TimeOfDay,
                     SlutTid = EndTime.TimeOfDay,
-                    //Beskrivelse = "Scheduled shift"
+                   
                 };
 
                 _vagtPlanDataService.AddPlanData(planData);

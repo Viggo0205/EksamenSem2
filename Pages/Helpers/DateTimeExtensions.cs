@@ -1,4 +1,5 @@
-﻿namespace EksamenSem2.Pages.Helpers
+﻿// jonas
+namespace EksamenSem2.Pages.Helpers
 {
     public static class DateTimeExtensions
     {

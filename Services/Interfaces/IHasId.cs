@@ -1,4 +1,5 @@
-﻿namespace EksamenSem2.Services.Interfaces
+﻿// Victor
+namespace EksamenSem2.Services.Interfaces
 {
     public interface IHasId
     {

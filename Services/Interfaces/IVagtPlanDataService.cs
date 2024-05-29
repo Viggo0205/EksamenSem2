@@ -1,4 +1,5 @@
-﻿using EksamenSem2.Models;
+﻿// Victor og Jonas
+using EksamenSem2.Models;
 using System.Collections.Generic;
 
 namespace EksamenSem2.Services.Interfaces

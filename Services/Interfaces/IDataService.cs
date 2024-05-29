@@ -1,4 +1,5 @@
-﻿using EksamenSem2.Services.Interfaces;
+﻿// Victor
+using EksamenSem2.Services.Interfaces;
 
 public interface IDataService<T> where T : class, IHasId
 {

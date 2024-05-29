@@ -1,4 +1,4 @@
-﻿
+﻿// Matti, Victor og Tobias
 using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;

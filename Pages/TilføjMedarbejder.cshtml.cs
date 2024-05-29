@@ -1,3 +1,4 @@
+//Victor og tobias
 using EksamenSem2.Models;
 using EksamenSem2.Pages.Login;
 using EksamenSem2.Services.Interfaces;
@@ -6,10 +7,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-//using EksamenSem2.ModelsCustom;
 using Microsoft.AspNetCore.Authorization;
 
-//[Authorize(Roles = "admin")]
+
 public class TilføjMedarbejderModel : PageModel
 {
     [BindProperty]

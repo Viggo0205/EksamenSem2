@@ -1,4 +1,4 @@
-﻿
+﻿// tobias og Victor
 using EksamenSem2.Services.Interfaces;
 namespace EksamenSem2.Models;
 public partial class Rolle : IHasId
@@ -11,7 +11,5 @@ public partial class Rolle : IHasId
         Navn = navn;
         Rettigheder = rettigheder;
     }
-    
-    //public int Id { get; set; }
 }
 

@@ -1,3 +1,4 @@
+// oliver og jonas
 using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;

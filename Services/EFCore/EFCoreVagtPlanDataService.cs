@@ -1,5 +1,5 @@
-﻿using EksamenSem2.Models;
-//using EksamenSem2.ModelsCustom;
+﻿// Matti, Victor og Jonas
+using EksamenSem2.Models;
 using EksamenSem2.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
